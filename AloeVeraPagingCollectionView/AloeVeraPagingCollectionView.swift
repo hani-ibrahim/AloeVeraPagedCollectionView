@@ -10,12 +10,14 @@ import UIKit
 
 open class AloeVeraPagingCollectionView: UICollectionView {
     
-    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: AloeVeraPagingFlowLayout())
-    }
+    public var pagingLayoutStyle: AloeVeraPagingLayouting?
     
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-//        flow
+    open override var bounds: CGRect {
+        willSet {
+            guard bounds.size != newValue.size else {
+                return
+            }
+            pagingLayoutStyle?.collectionView(self, willChangeSizeTo: newValue.size)
+        }
     }
 }

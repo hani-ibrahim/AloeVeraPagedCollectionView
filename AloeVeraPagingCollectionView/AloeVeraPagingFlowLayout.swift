@@ -10,5 +10,14 @@ import UIKit
 
 open class AloeVeraPagingFlowLayout: UICollectionViewFlowLayout {
     
+    public var pagingLayoutStyle: AloeVeraPagingLayouting?
     
+    open override func prepare() {
+        super.prepare()
+        
+        guard let collectionView = collectionView else {
+            return
+        }
+        pagingLayoutStyle?.collectionView(collectionView, willChangeSizeTo: collectionView.bounds.size)
+    }
 }

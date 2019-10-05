@@ -9,5 +9,5 @@
 import UIKit
 
 public protocol AloeVeraPagingLayouting {
-    
+    func collectionView(_ collectionView: UICollectionView, willChangeSizeTo newSize: CGSize)
 }

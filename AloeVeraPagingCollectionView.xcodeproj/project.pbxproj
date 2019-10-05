@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3793721A2348BD9900540553 /* AloeVeraCenterPagingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379372192348BD9900540553 /* AloeVeraCenterPagingLayout.swift */; };
+		3793721C2348D21700540553 /* CGPoint+distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793721B2348D21700540553 /* CGPoint+distance.swift */; };
+		379372202348D35B00540553 /* UIScrollView+contentFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793721F2348D35B00540553 /* UIScrollView+contentFrame.swift */; };
 		37D97FFD2301E15100273C52 /* AloeVeraPagingCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D97FFB2301E15100273C52 /* AloeVeraPagingCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37D980322301E43500273C52 /* AloeVeraPagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D980312301E43500273C52 /* AloeVeraPagingCollectionView.swift */; };
 		37D980342301EA4C00273C52 /* AloeVeraPagingLayouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D980332301EA4C00273C52 /* AloeVeraPagingLayouting.swift */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		379372192348BD9900540553 /* AloeVeraCenterPagingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AloeVeraCenterPagingLayout.swift; sourceTree = "<group>"; };
+		3793721B2348D21700540553 /* CGPoint+distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+distance.swift"; sourceTree = "<group>"; };
+		3793721F2348D35B00540553 /* UIScrollView+contentFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+contentFrame.swift"; sourceTree = "<group>"; };
 		37D97FF82301E15100273C52 /* AloeVeraPagingCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AloeVeraPagingCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D97FFB2301E15100273C52 /* AloeVeraPagingCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AloeVeraPagingCollectionView.h; sourceTree = "<group>"; };
 		37D97FFC2301E15100273C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -33,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3793721E2348D32400540553 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3793721B2348D21700540553 /* CGPoint+distance.swift */,
+				3793721F2348D35B00540553 /* UIScrollView+contentFrame.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		37D97FEE2301E15100273C52 = {
 			isa = PBXGroup;
 			children = (
@@ -53,8 +68,10 @@
 			isa = PBXGroup;
 			children = (
 				37D980312301E43500273C52 /* AloeVeraPagingCollectionView.swift */,
-				37D980332301EA4C00273C52 /* AloeVeraPagingLayouting.swift */,
 				37D980352301EA5E00273C52 /* AloeVeraPagingFlowLayout.swift */,
+				37D980332301EA4C00273C52 /* AloeVeraPagingLayouting.swift */,
+				379372192348BD9900540553 /* AloeVeraCenterPagingLayout.swift */,
+				3793721E2348D32400540553 /* Extensions */,
 				37D980032301E1AB00273C52 /* Supporting files */,
 			);
 			path = AloeVeraPagingCollectionView;
@@ -122,6 +139,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 37D97FEE2301E15100273C52;
 			productRefGroup = 37D97FF92301E15100273C52 /* Products */;
@@ -150,6 +168,9 @@
 			files = (
 				37D980322301E43500273C52 /* AloeVeraPagingCollectionView.swift in Sources */,
 				37D980362301EA5E00273C52 /* AloeVeraPagingFlowLayout.swift in Sources */,
+				3793721C2348D21700540553 /* CGPoint+distance.swift in Sources */,
+				379372202348D35B00540553 /* UIScrollView+contentFrame.swift in Sources */,
+				3793721A2348BD9900540553 /* AloeVeraCenterPagingLayout.swift in Sources */,
 				37D980342301EA4C00273C52 /* AloeVeraPagingLayouting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,7 +230,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -267,7 +288,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
