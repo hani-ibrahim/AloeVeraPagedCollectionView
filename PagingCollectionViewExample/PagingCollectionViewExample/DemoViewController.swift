@@ -7,14 +7,28 @@
 //
 
 import UIKit
+//import AloeVeraPagingCollectionView
 
-class DemoViewController: UIViewController {
+final class DemoViewController: UIViewController {
 
+    @IBOutlet private var collectionView: UICollectionView!
+    
+    private let data = (0..<200).map { "Cell - \($0)" }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
-
-
 }
 
+extension DemoViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        data.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueCell(ofType: DemoCollectionViewCell.self, at: indexPath)
+        cell.titleLabel.text = data[indexPath.row]
+        return cell
+    }
+}

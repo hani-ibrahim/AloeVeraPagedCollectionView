@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3793711F2348B4BF00540553 /* DemoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793711E2348B4BF00540553 /* DemoCollectionViewCell.swift */; };
+		379371232348B77E00540553 /* UICollectionView+dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379371222348B77E00540553 /* UICollectionView+dequeue.swift */; };
 		37D980122301E2FB00273C52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D980112301E2FB00273C52 /* AppDelegate.swift */; };
 		37D980142301E2FB00273C52 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D980132301E2FB00273C52 /* DemoViewController.swift */; };
 		37D980172301E2FB00273C52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37D980152301E2FB00273C52 /* Main.storyboard */; };
 		37D980192301E2FB00273C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D980182301E2FB00273C52 /* Assets.xcassets */; };
 		37D9801C2301E2FB00273C52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37D9801A2301E2FB00273C52 /* LaunchScreen.storyboard */; };
+		37D980372301EC8400273C52 /* AloeVeraPagingCollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D980302301E3DA00273C52 /* AloeVeraPagingCollectionView.framework */; };
+		37D980382301EC8400273C52 /* AloeVeraPagingCollectionView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D980302301E3DA00273C52 /* AloeVeraPagingCollectionView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,9 +26,32 @@
 			remoteGlobalIDString = 37D97FF82301E15100273C52;
 			remoteInfo = AloeVeraPagingCollectionView;
 		};
+		37D980392301EC8400273C52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37D9802B2301E3DA00273C52 /* AloeVeraPagingCollectionView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 37D97FF72301E15100273C52;
+			remoteInfo = AloeVeraPagingCollectionView;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		37D9803B2301EC8400273C52 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				37D980382301EC8400273C52 /* AloeVeraPagingCollectionView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3793711E2348B4BF00540553 /* DemoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoCollectionViewCell.swift; sourceTree = "<group>"; };
+		379371222348B77E00540553 /* UICollectionView+dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+dequeue.swift"; sourceTree = "<group>"; };
 		37D9800E2301E2FB00273C52 /* PagingCollectionViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagingCollectionViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D980112301E2FB00273C52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37D980132301E2FB00273C52 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D980372301EC8400273C52 /* AloeVeraPagingCollectionView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +96,8 @@
 			children = (
 				37D980112301E2FB00273C52 /* AppDelegate.swift */,
 				37D980132301E2FB00273C52 /* DemoViewController.swift */,
+				3793711E2348B4BF00540553 /* DemoCollectionViewCell.swift */,
+				379371222348B77E00540553 /* UICollectionView+dequeue.swift */,
 				37D980152301E2FB00273C52 /* Main.storyboard */,
 				37D980232301E33500273C52 /* Supporting files */,
 			);
@@ -110,10 +140,12 @@
 				37D9800A2301E2FB00273C52 /* Sources */,
 				37D9800B2301E2FB00273C52 /* Frameworks */,
 				37D9800C2301E2FB00273C52 /* Resources */,
+				37D9803B2301EC8400273C52 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				37D9803A2301EC8400273C52 /* PBXTargetDependency */,
 			);
 			name = PagingCollectionViewExample;
 			productName = PagingCollectionViewExample;
@@ -188,11 +220,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				37D980142301E2FB00273C52 /* DemoViewController.swift in Sources */,
+				379371232348B77E00540553 /* UICollectionView+dequeue.swift in Sources */,
+				3793711F2348B4BF00540553 /* DemoCollectionViewCell.swift in Sources */,
 				37D980122301E2FB00273C52 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37D9803A2301EC8400273C52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AloeVeraPagingCollectionView;
+			targetProxy = 37D980392301EC8400273C52 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		37D980152301E2FB00273C52 /* Main.storyboard */ = {
@@ -333,6 +375,7 @@
 		37D980212301E2FB00273C52 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
@@ -353,6 +396,7 @@
 		37D980222301E2FB00273C52 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
