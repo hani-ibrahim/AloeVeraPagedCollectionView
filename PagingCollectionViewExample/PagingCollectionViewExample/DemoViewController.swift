@@ -11,16 +11,14 @@ import AloeVeraPagingCollectionView
 
 final class DemoViewController: UIViewController {
 
-    @IBOutlet private var collectionView: AloeVeraPagingCollectionView!
+    @IBOutlet private var collectionView: UICollectionView!
     
+    private var centerItemScroller: AloeVeraCenterItemScroller?
     private let data = (0..<200).map { "Cell - \($0)" }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.pagingLayout = AloeVeraCenterPagingLayout(collectionView: collectionView)
-        
-//        (collectionView.collectionViewLayout as? AloeVeraPagingFlowLayout)?.pagingLayoutStyle = pagingLayout
-//        collectionView.pagingLayoutStyle = AloeVeraCenterPagingLayout()
+        centerItemScroller = AloeVeraCenterItemScroller(collectionView: collectionView)
     }
     
     @IBAction private func buttonTapped() {
@@ -43,5 +41,9 @@ extension DemoViewController: UICollectionViewDataSource {
 extension DemoViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 100, height: 300)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        print("bounds: \(scrollView.bounds.origin.y)")
     }
 }
