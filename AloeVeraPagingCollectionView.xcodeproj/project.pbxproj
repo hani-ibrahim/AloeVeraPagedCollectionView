@@ -13,7 +13,6 @@
 		37D97FFD2301E15100273C52 /* AloeVeraPagingCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D97FFB2301E15100273C52 /* AloeVeraPagingCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37D980322301E43500273C52 /* AloeVeraPagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D980312301E43500273C52 /* AloeVeraPagingCollectionView.swift */; };
 		37D980342301EA4C00273C52 /* AloeVeraPagingLayouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D980332301EA4C00273C52 /* AloeVeraPagingLayouting.swift */; };
-		37D980362301EA5E00273C52 /* AloeVeraPagingFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D980352301EA5E00273C52 /* AloeVeraPagingFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +24,6 @@
 		37D97FFC2301E15100273C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37D980312301E43500273C52 /* AloeVeraPagingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AloeVeraPagingCollectionView.swift; sourceTree = "<group>"; };
 		37D980332301EA4C00273C52 /* AloeVeraPagingLayouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AloeVeraPagingLayouting.swift; sourceTree = "<group>"; };
-		37D980352301EA5E00273C52 /* AloeVeraPagingFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AloeVeraPagingFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				37D980312301E43500273C52 /* AloeVeraPagingCollectionView.swift */,
-				37D980352301EA5E00273C52 /* AloeVeraPagingFlowLayout.swift */,
 				37D980332301EA4C00273C52 /* AloeVeraPagingLayouting.swift */,
 				379372192348BD9900540553 /* AloeVeraCenterPagingLayout.swift */,
 				3793721E2348D32400540553 /* Extensions */,
@@ -167,7 +164,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				37D980322301E43500273C52 /* AloeVeraPagingCollectionView.swift in Sources */,
-				37D980362301EA5E00273C52 /* AloeVeraPagingFlowLayout.swift in Sources */,
 				3793721C2348D21700540553 /* CGPoint+distance.swift in Sources */,
 				379372202348D35B00540553 /* UIScrollView+contentFrame.swift in Sources */,
 				3793721A2348BD9900540553 /* AloeVeraCenterPagingLayout.swift in Sources */,

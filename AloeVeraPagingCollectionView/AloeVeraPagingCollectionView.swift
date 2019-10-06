@@ -10,14 +10,16 @@ import UIKit
 
 open class AloeVeraPagingCollectionView: UICollectionView {
     
-    public var pagingLayoutStyle: AloeVeraPagingLayouting?
+    public var pagingLayout: AloeVeraPagingLayouting?
     
     open override var bounds: CGRect {
-        willSet {
-            guard bounds.size != newValue.size else {
+        didSet {
+            guard bounds.size != oldValue.size else {
                 return
             }
-            pagingLayoutStyle?.collectionView(self, willChangeSizeTo: newValue.size)
+            if let indexPath = pagingLayout?.centeredVisibleItem(in: oldValue) {
+                pagingLayout?.scrollToItem(at: indexPath, in: bounds)
+            }
         }
     }
 }

@@ -17,13 +17,14 @@ final class DemoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        (collectionView.collectionViewLayout as? AloeVeraPagingFlowLayout)?.pagingLayoutStyle = AloeVeraCenterPagingLayout()
-        collectionView.pagingLayoutStyle = AloeVeraCenterPagingLayout()
+        collectionView.pagingLayout = AloeVeraCenterPagingLayout(collectionView: collectionView)
+        
+//        (collectionView.collectionViewLayout as? AloeVeraPagingFlowLayout)?.pagingLayoutStyle = pagingLayout
+//        collectionView.pagingLayoutStyle = AloeVeraCenterPagingLayout()
     }
     
     @IBAction private func buttonTapped() {
-        (collectionView.collectionViewLayout as? AloeVeraPagingFlowLayout)?.pagingLayoutStyle?.collectionView(collectionView, willChangeSizeTo: .zero)
-        collectionView.pagingLayoutStyle?.collectionView(collectionView, willChangeSizeTo: .zero)
+//        pagingLayout.centeredCellForBounds(.zero, in: collectionView)
     }
 }
 
@@ -41,6 +42,6 @@ extension DemoViewController: UICollectionViewDataSource {
 
 extension DemoViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: Bool.random() ? 100 : 200, height: Bool.random() ? 100 : 200)
+        CGSize(width: 100, height: 300)
     }
 }
