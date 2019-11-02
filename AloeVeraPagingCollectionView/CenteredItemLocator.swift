@@ -27,10 +27,13 @@ public final class CenteredItemLocator {
         guard let layoutAttributesArray = collectionView.collectionViewLayout.layoutAttributesForElements(in: collectionView.bounds) else {
             return nil
         }
-
+        
+        let adjustedCenter = collectionView.adjustedCenter
         let centerOffset = delegate?.centerOffset(for: self) ?? .zero
-        let totalCenterOffset = CGPoint(x: collectionView.bounds.minX + centerOffset.x, y: collectionView.bounds.minY + centerOffset.y)
-        let visibleCenter = collectionView.adjustedCenter(shiftedBy: totalCenterOffset)
+        let visibleCenter = CGPoint(
+            x: adjustedCenter.x + centerOffset.x + collectionView.bounds.minX,
+            y: adjustedCenter.y + centerOffset.y + collectionView.bounds.minY
+        )
 
         return layoutAttributesArray.filter { layoutAttributes in
             !(delegate?.centeredItemLocator(self, shouldExcludeItemAt: layoutAttributes.indexPath) ?? false)
@@ -47,8 +50,12 @@ public final class CenteredItemLocator {
         }
         
         let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
+        let adjustedCenter = collectionView.adjustedCenter
         let centerOffset = delegate?.centerOffset(for: self) ?? .zero
-        let visibleCenter = collectionView.adjustedCenter(shiftedBy: centerOffset)
+        let visibleCenter = CGPoint(
+            x: adjustedCenter.x + centerOffset.x,
+            y: adjustedCenter.y + centerOffset.y
+        )
         
         let proposedXPosition = layoutAttributes.center.x - visibleCenter.x
         let proposedYPosition = layoutAttributes.center.y - visibleCenter.y
@@ -75,10 +82,10 @@ private extension CGPoint {
 }
 
 private extension UIScrollView {
-    func adjustedCenter(shiftedBy offset: CGPoint) -> CGPoint {
+    var adjustedCenter: CGPoint {
         CGPoint(
-            x: (bounds.size.width + adjustedContentInset.right - adjustedContentInset.left) / 2 + offset.x,
-            y: (bounds.size.height + adjustedContentInset.top - adjustedContentInset.bottom) / 2 + offset.y
+            x: (bounds.size.width + adjustedContentInset.right - adjustedContentInset.left) / 2,
+            y: (bounds.size.height + adjustedContentInset.top - adjustedContentInset.bottom) / 2
         )
     }
 }
