@@ -8,51 +8,46 @@
 
 import UIKit
 
+public protocol CenteredItemLocatorDelegate: AnyObject {
+    func centerOffset(for locator: CenteredItemLocator) -> CGPoint
+    func centeredItemLocator(_ locator: CenteredItemLocator, shouldExcludeItemAt indexPath: IndexPath) -> Bool
+    func centeredItemLocator(_ locator: CenteredItemLocator, shouldScrollTo contentOffset: CGPoint) -> Bool
+}
+
 /// Locate the current centered item in the collectionView and scroll to it
 public final class CenteredItemLocator {
     
-    /// Offset to the center point of the collection view
-    /// Helpful when the collection view covered by some views
-    public var centerOffset: CGPoint = .zero
+    public weak var delegate: CenteredItemLocatorDelegate?
     
-    /// Helper function to exclude some items such as header or footer items
-    /// Defaults to false (all items will be taken into account)
-    public var shouldExcludeItemAt: ((IndexPath) -> Bool)? = nil
-    
-    private let collectionView: UICollectionView
-    private var lastLocatedCenteredItemIndexPath: IndexPath? = nil
-    
-    public init(collectionView: UICollectionView) {
-        self.collectionView = collectionView
+    public init() {
+        
     }
     
-    @discardableResult
-    public func locateCenteredItem() -> IndexPath? {
+    public func locateCenteredItem(in collectionView: UICollectionView) -> IndexPath? {
         guard let layoutAttributesArray = collectionView.collectionViewLayout.layoutAttributesForElements(in: collectionView.bounds) else {
             return nil
         }
 
-        let centerShift = CGPoint(x: collectionView.bounds.minX + centerOffset.x, y: collectionView.bounds.minY + centerOffset.y)
-        let visibleCenter = collectionView.adjustedCenter(shiftedBy: centerShift)
+        let centerOffset = delegate?.centerOffset(for: self) ?? .zero
+        let totalCenterOffset = CGPoint(x: collectionView.bounds.minX + centerOffset.x, y: collectionView.bounds.minY + centerOffset.y)
+        let visibleCenter = collectionView.adjustedCenter(shiftedBy: totalCenterOffset)
 
-        lastLocatedCenteredItemIndexPath = layoutAttributesArray.filter { layoutAttributes in
-            !(shouldExcludeItemAt?(layoutAttributes.indexPath) ?? false)
+        return layoutAttributesArray.filter { layoutAttributes in
+            !(delegate?.centeredItemLocator(self, shouldExcludeItemAt: layoutAttributes.indexPath) ?? false)
         }.map { layoutAttributes in
             (indexPath: layoutAttributes.indexPath, distanceToCenter: visibleCenter.distance(to: layoutAttributes.center))
         }.min {
             $0.distanceToCenter < $1.distanceToCenter
         }?.indexPath
-        
-        return lastLocatedCenteredItemIndexPath
     }
     
-    public func scrollToCenteredItem(at indexPath: IndexPath? = nil) {
-        guard let indexPath = indexPath ?? lastLocatedCenteredItemIndexPath,
-            let layoutAttributes = collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath) else {
-                return
+    public func scrollToItem(at indexPath: IndexPath, toBeCenteredIn collectionView: UICollectionView) {
+        guard let layoutAttributes = collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath) else {
+            return
         }
         
         let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
+        let centerOffset = delegate?.centerOffset(for: self) ?? .zero
         let visibleCenter = collectionView.adjustedCenter(shiftedBy: centerOffset)
         
         let proposedXPosition = layoutAttributes.center.x - visibleCenter.x
@@ -65,7 +60,9 @@ public final class CenteredItemLocator {
         let yPosition = min(max(proposedYPosition, minimumYPosition), maximumYPosition)
         let contentOffset = CGPoint(x: xPosition, y: yPosition)
         
-        collectionView.contentOffset = contentOffset
+        if delegate?.centeredItemLocator(self, shouldScrollTo: contentOffset) != false {
+            collectionView.contentOffset = contentOffset
+        }
     }
 }
 
@@ -78,10 +75,10 @@ private extension CGPoint {
 }
 
 private extension UIScrollView {
-    func adjustedCenter(shiftedBy shift: CGPoint) -> CGPoint {
+    func adjustedCenter(shiftedBy offset: CGPoint) -> CGPoint {
         CGPoint(
-            x: (bounds.size.width + adjustedContentInset.right - adjustedContentInset.left) / 2 + shift.x,
-            y: (bounds.size.height + adjustedContentInset.top - adjustedContentInset.bottom) / 2 + shift.y
+            x: (bounds.size.width + adjustedContentInset.right - adjustedContentInset.left) / 2 + offset.x,
+            y: (bounds.size.height + adjustedContentInset.top - adjustedContentInset.bottom) / 2 + offset.y
         )
     }
 }

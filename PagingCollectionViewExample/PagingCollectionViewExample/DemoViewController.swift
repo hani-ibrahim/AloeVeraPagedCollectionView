@@ -24,7 +24,7 @@ final class DemoViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let offset = collectionView.adjustedContentInset.top / 2 - collectionView.adjustedContentInset.bottom / 2
+        let offset = (collectionView.adjustedContentInset.top - collectionView.adjustedContentInset.bottom) / 2
         visibleCenterView.center = CGPoint(x: collectionView.center.x, y: collectionView.center.y + offset)
     }
     
