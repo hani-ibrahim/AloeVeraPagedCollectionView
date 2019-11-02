@@ -11,4 +11,5 @@ import UIKit
 final class DemoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private(set) var titleLabel: UILabel!
+    
 }

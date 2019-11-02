@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jA7-Sv-xW2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jA7-Sv-xW2">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,35 +16,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Gir-Q3-Gn1">
-                                <rect key="frame" x="0.0" y="150" width="414" height="746"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Gir-Q3-Gn1" customClass="CenteredItemCollectionView" customModule="AloeVeraPagingCollectionView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Cpm-4b-UUd">
-                                    <size key="itemSize" width="100" height="100"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Cpm-4b-UUd" customClass="CenterItemCollectionViewFlowLayout" customModule="AloeVeraPagingCollectionView">
+                                    <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DemoCollectionViewCell" id="SN5-A2-Nnb" customClass="DemoCollectionViewCell" customModule="PagingCollectionViewExample" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="20" width="100" height="100"/>
+                                        <rect key="frame" x="20" y="20" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM1-MK-IPg">
-                                                    <rect key="frame" x="27" y="18" width="46" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="888" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM1-MK-IPg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="GM1-MK-IPg" firstAttribute="top" secondItem="SN5-A2-Nnb" secondAttribute="topMargin" constant="10" id="Hw5-9U-qvE"/>
-                                            <constraint firstItem="GM1-MK-IPg" firstAttribute="centerX" secondItem="SN5-A2-Nnb" secondAttribute="centerX" id="tye-ll-gaE"/>
+                                            <constraint firstItem="GM1-MK-IPg" firstAttribute="leading" secondItem="SN5-A2-Nnb" secondAttribute="leading" id="Fk3-j0-OKA"/>
+                                            <constraint firstItem="GM1-MK-IPg" firstAttribute="top" secondItem="SN5-A2-Nnb" secondAttribute="top" id="GrZ-lI-ZSK"/>
+                                            <constraint firstAttribute="trailing" secondItem="GM1-MK-IPg" secondAttribute="trailing" id="XTy-N9-4k0"/>
+                                            <constraint firstAttribute="bottom" secondItem="GM1-MK-IPg" secondAttribute="bottom" id="eCM-6K-adD"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="titleLabel" destination="GM1-MK-IPg" id="QzO-3z-XXx"/>
@@ -61,8 +63,8 @@
                         <constraints>
                             <constraint firstItem="Gir-Q3-Gn1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GV2-f5-RgX"/>
                             <constraint firstAttribute="trailing" secondItem="Gir-Q3-Gn1" secondAttribute="trailing" id="dHn-d1-NjV"/>
-                            <constraint firstItem="Gir-Q3-Gn1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="150" id="gDm-fr-aAx"/>
                             <constraint firstAttribute="bottom" secondItem="Gir-Q3-Gn1" secondAttribute="bottom" id="hbQ-UL-oFe"/>
+                            <constraint firstItem="Gir-Q3-Gn1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ijY-oL-Lxr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
