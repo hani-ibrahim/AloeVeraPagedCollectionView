@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		376451D5234BBBC300CE6A1E /* CenteredItemLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376451D4234BBBC300CE6A1E /* CenteredItemLocator.swift */; };
-		37D97FFD2301E15100273C52 /* AloeVeraPagingCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D97FFB2301E15100273C52 /* AloeVeraPagingCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37D97FFD2301E15100273C52 /* AloeVeraPagedCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D97FFB2301E15100273C52 /* AloeVeraPagedCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37F3C934236DE7F4009C864E /* CenteredItemCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F3C933236DE7F4009C864E /* CenteredItemCollectionViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		376451D4234BBBC300CE6A1E /* CenteredItemLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredItemLocator.swift; sourceTree = "<group>"; };
-		37D97FF82301E15100273C52 /* AloeVeraPagingCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AloeVeraPagingCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		37D97FFB2301E15100273C52 /* AloeVeraPagingCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AloeVeraPagingCollectionView.h; sourceTree = "<group>"; };
+		37D97FF82301E15100273C52 /* AloeVeraPagedCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AloeVeraPagedCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37D97FFB2301E15100273C52 /* AloeVeraPagedCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AloeVeraPagedCollectionView.h; sourceTree = "<group>"; };
 		37D97FFC2301E15100273C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37F3C933236DE7F4009C864E /* CenteredItemCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredItemCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -34,7 +34,7 @@
 		37D97FEE2301E15100273C52 = {
 			isa = PBXGroup;
 			children = (
-				37D97FFA2301E15100273C52 /* AloeVeraPagingCollectionView */,
+				37D97FFA2301E15100273C52 /* AloeVeraPagedCollectionView */,
 				37D97FF92301E15100273C52 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -42,25 +42,25 @@
 		37D97FF92301E15100273C52 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37D97FF82301E15100273C52 /* AloeVeraPagingCollectionView.framework */,
+				37D97FF82301E15100273C52 /* AloeVeraPagedCollectionView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		37D97FFA2301E15100273C52 /* AloeVeraPagingCollectionView */ = {
+		37D97FFA2301E15100273C52 /* AloeVeraPagedCollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				376451D4234BBBC300CE6A1E /* CenteredItemLocator.swift */,
 				37F3C933236DE7F4009C864E /* CenteredItemCollectionViewFlowLayout.swift */,
 				37D980032301E1AB00273C52 /* Supporting files */,
 			);
-			path = AloeVeraPagingCollectionView;
+			path = AloeVeraPagedCollectionView;
 			sourceTree = "<group>";
 		};
 		37D980032301E1AB00273C52 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
-				37D97FFB2301E15100273C52 /* AloeVeraPagingCollectionView.h */,
+				37D97FFB2301E15100273C52 /* AloeVeraPagedCollectionView.h */,
 				37D97FFC2301E15100273C52 /* Info.plist */,
 			);
 			name = "Supporting files";
@@ -73,16 +73,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37D97FFD2301E15100273C52 /* AloeVeraPagingCollectionView.h in Headers */,
+				37D97FFD2301E15100273C52 /* AloeVeraPagedCollectionView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		37D97FF72301E15100273C52 /* AloeVeraPagingCollectionView */ = {
+		37D97FF72301E15100273C52 /* AloeVeraPagedCollectionView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37D980002301E15100273C52 /* Build configuration list for PBXNativeTarget "AloeVeraPagingCollectionView" */;
+			buildConfigurationList = 37D980002301E15100273C52 /* Build configuration list for PBXNativeTarget "AloeVeraPagedCollectionView" */;
 			buildPhases = (
 				37D97FF32301E15100273C52 /* Headers */,
 				37D97FF42301E15100273C52 /* Sources */,
@@ -93,9 +93,9 @@
 			);
 			dependencies = (
 			);
-			name = AloeVeraPagingCollectionView;
-			productName = AloeVeraPagingCollectionView;
-			productReference = 37D97FF82301E15100273C52 /* AloeVeraPagingCollectionView.framework */;
+			name = AloeVeraPagedCollectionView;
+			productName = AloeVeraPagedCollectionView;
+			productReference = 37D97FF82301E15100273C52 /* AloeVeraPagedCollectionView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -113,7 +113,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 37D97FF22301E15100273C52 /* Build configuration list for PBXProject "AloeVeraPagingCollectionView" */;
+			buildConfigurationList = 37D97FF22301E15100273C52 /* Build configuration list for PBXProject "AloeVeraPagedCollectionView" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -126,7 +126,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				37D97FF72301E15100273C52 /* AloeVeraPagingCollectionView */,
+				37D97FF72301E15100273C52 /* AloeVeraPagedCollectionView */,
 			);
 		};
 /* End PBXProject section */
@@ -287,7 +287,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AloeVeraPagingCollectionView/Info.plist;
+				INFOPLIST_FILE = AloeVeraPagedCollectionView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -295,7 +295,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hani.AloeVeraPagingCollectionView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hani.AloeVeraPagedCollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -315,7 +315,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AloeVeraPagingCollectionView/Info.plist;
+				INFOPLIST_FILE = AloeVeraPagedCollectionView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -323,7 +323,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hani.AloeVeraPagingCollectionView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hani.AloeVeraPagedCollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -334,7 +334,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		37D97FF22301E15100273C52 /* Build configuration list for PBXProject "AloeVeraPagingCollectionView" */ = {
+		37D97FF22301E15100273C52 /* Build configuration list for PBXProject "AloeVeraPagedCollectionView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37D97FFE2301E15100273C52 /* Debug */,
@@ -343,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37D980002301E15100273C52 /* Build configuration list for PBXNativeTarget "AloeVeraPagingCollectionView" */ = {
+		37D980002301E15100273C52 /* Build configuration list for PBXNativeTarget "AloeVeraPagedCollectionView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37D980012301E15100273C52 /* Debug */,

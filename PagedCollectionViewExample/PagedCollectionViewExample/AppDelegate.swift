@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  PagingCollectionViewExample
+//  PagedCollectionViewExample
 //
 //  Created by Hani on 12.08.19.
 //  Copyright © 2019 Hani. All rights reserved.

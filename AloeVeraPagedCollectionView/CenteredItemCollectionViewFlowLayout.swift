@@ -1,6 +1,6 @@
 //
 //  CenteredItemCollectionViewFlowLayout.swift
-//  AloeVeraPagingCollectionView
+//  AloeVeraPagedCollectionView
 //
 //  Created by Hani on 02.11.19.
 //  Copyright © 2019 Hani. All rights reserved.

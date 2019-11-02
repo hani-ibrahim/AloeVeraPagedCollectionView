@@ -1,6 +1,6 @@
 //
 //  CenteredItemLocator.swift
-//  AloeVeraPagingCollectionView
+//  AloeVeraPagedCollectionView
 //
 //  Created by Hani on 07.10.19.
 //  Copyright © 2019 Hani. All rights reserved.

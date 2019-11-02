@@ -14,24 +14,24 @@
 		37D980172301E2FB00273C52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37D980152301E2FB00273C52 /* Main.storyboard */; };
 		37D980192301E2FB00273C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D980182301E2FB00273C52 /* Assets.xcassets */; };
 		37D9801C2301E2FB00273C52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37D9801A2301E2FB00273C52 /* LaunchScreen.storyboard */; };
-		37D980372301EC8400273C52 /* AloeVeraPagingCollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D980302301E3DA00273C52 /* AloeVeraPagingCollectionView.framework */; };
-		37D980382301EC8400273C52 /* AloeVeraPagingCollectionView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D980302301E3DA00273C52 /* AloeVeraPagingCollectionView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37D980372301EC8400273C52 /* AloeVeraPagedCollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D980302301E3DA00273C52 /* AloeVeraPagedCollectionView.framework */; };
+		37D980382301EC8400273C52 /* AloeVeraPagedCollectionView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D980302301E3DA00273C52 /* AloeVeraPagedCollectionView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		37D9802F2301E3DA00273C52 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 37D9802B2301E3DA00273C52 /* AloeVeraPagingCollectionView.xcodeproj */;
+			containerPortal = 37D9802B2301E3DA00273C52 /* AloeVeraPagedCollectionView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 37D97FF82301E15100273C52;
-			remoteInfo = AloeVeraPagingCollectionView;
+			remoteInfo = AloeVeraPagedCollectionView;
 		};
 		37D980392301EC8400273C52 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 37D9802B2301E3DA00273C52 /* AloeVeraPagingCollectionView.xcodeproj */;
+			containerPortal = 37D9802B2301E3DA00273C52 /* AloeVeraPagedCollectionView.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 37D97FF72301E15100273C52;
-			remoteInfo = AloeVeraPagingCollectionView;
+			remoteInfo = AloeVeraPagedCollectionView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -42,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				37D980382301EC8400273C52 /* AloeVeraPagingCollectionView.framework in Embed Frameworks */,
+				37D980382301EC8400273C52 /* AloeVeraPagedCollectionView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,14 +52,14 @@
 /* Begin PBXFileReference section */
 		3793711E2348B4BF00540553 /* DemoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoCollectionViewCell.swift; sourceTree = "<group>"; };
 		379371222348B77E00540553 /* UICollectionView+dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+dequeue.swift"; sourceTree = "<group>"; };
-		37D9800E2301E2FB00273C52 /* PagingCollectionViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagingCollectionViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37D9800E2301E2FB00273C52 /* PagedCollectionViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagedCollectionViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D980112301E2FB00273C52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37D980132301E2FB00273C52 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		37D980162301E2FB00273C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37D980182301E2FB00273C52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37D9801B2301E2FB00273C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37D9801D2301E2FB00273C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		37D9802B2301E3DA00273C52 /* AloeVeraPagingCollectionView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AloeVeraPagingCollectionView.xcodeproj; path = ../AloeVeraPagingCollectionView.xcodeproj; sourceTree = "<group>"; };
+		37D9802B2301E3DA00273C52 /* AloeVeraPagedCollectionView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AloeVeraPagedCollectionView.xcodeproj; path = ../AloeVeraPagedCollectionView.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37D980372301EC8400273C52 /* AloeVeraPagingCollectionView.framework in Frameworks */,
+				37D980372301EC8400273C52 /* AloeVeraPagedCollectionView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +77,7 @@
 		37D980052301E2FB00273C52 = {
 			isa = PBXGroup;
 			children = (
-				37D980102301E2FB00273C52 /* PagingCollectionViewExample */,
+				37D980102301E2FB00273C52 /* PagedCollectionViewExample */,
 				37D9802A2301E3B900273C52 /* Frameworks */,
 				37D9800F2301E2FB00273C52 /* Products */,
 			);
@@ -86,12 +86,12 @@
 		37D9800F2301E2FB00273C52 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37D9800E2301E2FB00273C52 /* PagingCollectionViewExample.app */,
+				37D9800E2301E2FB00273C52 /* PagedCollectionViewExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		37D980102301E2FB00273C52 /* PagingCollectionViewExample */ = {
+		37D980102301E2FB00273C52 /* PagedCollectionViewExample */ = {
 			isa = PBXGroup;
 			children = (
 				37D980112301E2FB00273C52 /* AppDelegate.swift */,
@@ -101,7 +101,7 @@
 				37D980152301E2FB00273C52 /* Main.storyboard */,
 				37D980232301E33500273C52 /* Supporting files */,
 			);
-			path = PagingCollectionViewExample;
+			path = PagedCollectionViewExample;
 			sourceTree = "<group>";
 		};
 		37D980232301E33500273C52 /* Supporting files */ = {
@@ -117,7 +117,7 @@
 		37D9802A2301E3B900273C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				37D9802B2301E3DA00273C52 /* AloeVeraPagingCollectionView.xcodeproj */,
+				37D9802B2301E3DA00273C52 /* AloeVeraPagedCollectionView.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,7 +125,7 @@
 		37D9802C2301E3DA00273C52 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37D980302301E3DA00273C52 /* AloeVeraPagingCollectionView.framework */,
+				37D980302301E3DA00273C52 /* AloeVeraPagedCollectionView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,9 +133,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		37D9800D2301E2FB00273C52 /* PagingCollectionViewExample */ = {
+		37D9800D2301E2FB00273C52 /* PagedCollectionViewExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37D980202301E2FB00273C52 /* Build configuration list for PBXNativeTarget "PagingCollectionViewExample" */;
+			buildConfigurationList = 37D980202301E2FB00273C52 /* Build configuration list for PBXNativeTarget "PagedCollectionViewExample" */;
 			buildPhases = (
 				37D9800A2301E2FB00273C52 /* Sources */,
 				37D9800B2301E2FB00273C52 /* Frameworks */,
@@ -147,9 +147,9 @@
 			dependencies = (
 				37D9803A2301EC8400273C52 /* PBXTargetDependency */,
 			);
-			name = PagingCollectionViewExample;
-			productName = PagingCollectionViewExample;
-			productReference = 37D9800E2301E2FB00273C52 /* PagingCollectionViewExample.app */;
+			name = PagedCollectionViewExample;
+			productName = PagedCollectionViewExample;
+			productReference = 37D9800E2301E2FB00273C52 /* PagedCollectionViewExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -167,7 +167,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 37D980092301E2FB00273C52 /* Build configuration list for PBXProject "PagingCollectionViewExample" */;
+			buildConfigurationList = 37D980092301E2FB00273C52 /* Build configuration list for PBXProject "PagedCollectionViewExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -181,21 +181,21 @@
 			projectReferences = (
 				{
 					ProductGroup = 37D9802C2301E3DA00273C52 /* Products */;
-					ProjectRef = 37D9802B2301E3DA00273C52 /* AloeVeraPagingCollectionView.xcodeproj */;
+					ProjectRef = 37D9802B2301E3DA00273C52 /* AloeVeraPagedCollectionView.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				37D9800D2301E2FB00273C52 /* PagingCollectionViewExample */,
+				37D9800D2301E2FB00273C52 /* PagedCollectionViewExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		37D980302301E3DA00273C52 /* AloeVeraPagingCollectionView.framework */ = {
+		37D980302301E3DA00273C52 /* AloeVeraPagedCollectionView.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = AloeVeraPagingCollectionView.framework;
+			path = AloeVeraPagedCollectionView.framework;
 			remoteRef = 37D9802F2301E3DA00273C52 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -231,7 +231,7 @@
 /* Begin PBXTargetDependency section */
 		37D9803A2301EC8400273C52 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = AloeVeraPagingCollectionView;
+			name = AloeVeraPagedCollectionView;
 			targetProxy = 37D980392301EC8400273C52 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -377,15 +377,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = PagingCollectionViewExample/Info.plist;
+				INFOPLIST_FILE = PagedCollectionViewExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hani.PagingCollectionViewExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hani.PagedCollectionViewExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -398,15 +399,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = PagingCollectionViewExample/Info.plist;
+				INFOPLIST_FILE = PagedCollectionViewExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hani.PagingCollectionViewExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hani.PagedCollectionViewExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -417,7 +419,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		37D980092301E2FB00273C52 /* Build configuration list for PBXProject "PagingCollectionViewExample" */ = {
+		37D980092301E2FB00273C52 /* Build configuration list for PBXProject "PagedCollectionViewExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37D9801E2301E2FB00273C52 /* Debug */,
@@ -426,7 +428,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37D980202301E2FB00273C52 /* Build configuration list for PBXNativeTarget "PagingCollectionViewExample" */ = {
+		37D980202301E2FB00273C52 /* Build configuration list for PBXNativeTarget "PagedCollectionViewExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37D980212301E2FB00273C52 /* Debug */,
