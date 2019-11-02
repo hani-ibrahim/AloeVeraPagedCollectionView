@@ -55,7 +55,6 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="0Vb-DN-Bvz"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="xx5-Xb-46F"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -68,13 +67,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Demo" id="jsI-Hs-Q8V">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="yEz-tu-CVK">
-                            <connections>
-                                <action selector="buttonTapped" destination="BYZ-38-t0r" id="mx0-mH-M6j"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Demo" id="jsI-Hs-Q8V"/>
                     <connections>
                         <outlet property="collectionView" destination="Gir-Q3-Gn1" id="DW2-kd-Cs8"/>
                     </connections>

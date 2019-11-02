@@ -20,19 +20,26 @@ open class CenteredItemCollectionView: UICollectionView {
         willSet {
             if bounds.size != newValue.size {
                 /// Collection view set the origin of the collectionView first and then the size
-                /// So to get the last real bounds we can't use the `bounds`
-                print("\nboundsWillSet:")
-                print("lastBounds: \(lastBounds)")
+                /// So to get the last real bounds we can't use `bounds`
                 centeredItemLocator.locateCenteredItem(in: lastBounds)
-                
             }
             lastBounds = bounds
         }
     }
-}
-
-extension CenteredItemCollectionView: CenteredItemScrolling {
-    public func scrollToCenteredItem(at indexPath: IndexPath?) {
-        centeredItemLocator.scrollToCenteredItem(at: indexPath)
+    
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
+        setup()
+    }
+    
+    private func setup() {
+        (collectionViewLayout as? CenterItemCollectionViewFlowLayout)?.willAnimateBoundsChange = { [weak self] in
+            self?.centeredItemLocator.scrollToCenteredItem()
+        }
     }
 }

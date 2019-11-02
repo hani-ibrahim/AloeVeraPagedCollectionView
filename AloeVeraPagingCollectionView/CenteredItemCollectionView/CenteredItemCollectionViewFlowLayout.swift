@@ -10,9 +10,10 @@ import UIKit
 
 open class CenterItemCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
+    var willAnimateBoundsChange: (() -> Void)?
+    
     open override func prepare(forAnimatedBoundsChange oldBounds: CGRect) {
         super.prepare(forAnimatedBoundsChange: oldBounds)
-        (collectionView as? CenteredItemScrolling)?.scrollToCenteredItem()
+        willAnimateBoundsChange?()
     }
-    
 }
