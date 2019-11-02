@@ -11,7 +11,8 @@ import AloeVeraPagingCollectionView
 
 final class DemoViewController: UIViewController {
 
-    @IBOutlet private var collectionView: CenteredItemCollectionView!
+    @IBOutlet private var collectionView: UICollectionView!
+    @IBOutlet private var collectionViewLayout: CenteredItemCollectionViewFlowLayout!
     
     private let visibleCenterView = UIView()
     private let data = (0..<1000).map { String($0) }
@@ -24,7 +25,12 @@ final class DemoViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let offset = collectionView.adjustedContentInset.top / 2 - collectionView.adjustedContentInset.bottom / 2
-        visibleCenterView.center = CGPoint(x: view.center.x, y: view.center.y + offset)
+        visibleCenterView.center = CGPoint(x: collectionView.center.x, y: collectionView.center.y + offset)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionViewLayout.willRotate()
     }
 }
 

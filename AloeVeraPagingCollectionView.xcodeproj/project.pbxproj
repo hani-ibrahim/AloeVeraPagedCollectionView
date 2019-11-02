@@ -8,14 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		376451D5234BBBC300CE6A1E /* CenteredItemLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376451D4234BBBC300CE6A1E /* CenteredItemLocator.swift */; };
-		376451D7234BC7C900CE6A1E /* CenteredItemCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376451D6234BC7C900CE6A1E /* CenteredItemCollectionView.swift */; };
 		37D97FFD2301E15100273C52 /* AloeVeraPagingCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D97FFB2301E15100273C52 /* AloeVeraPagingCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37F3C934236DE7F4009C864E /* CenteredItemCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F3C933236DE7F4009C864E /* CenteredItemCollectionViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		376451D4234BBBC300CE6A1E /* CenteredItemLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredItemLocator.swift; sourceTree = "<group>"; };
-		376451D6234BC7C900CE6A1E /* CenteredItemCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredItemCollectionView.swift; sourceTree = "<group>"; };
 		37D97FF82301E15100273C52 /* AloeVeraPagingCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AloeVeraPagingCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D97FFB2301E15100273C52 /* AloeVeraPagingCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AloeVeraPagingCollectionView.h; sourceTree = "<group>"; };
 		37D97FFC2301E15100273C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,7 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				376451D4234BBBC300CE6A1E /* CenteredItemLocator.swift */,
-				37F3C932236DE79D009C864E /* CenteredItemCollectionView */,
+				37F3C933236DE7F4009C864E /* CenteredItemCollectionViewFlowLayout.swift */,
 				37D980032301E1AB00273C52 /* Supporting files */,
 			);
 			path = AloeVeraPagingCollectionView;
@@ -66,15 +64,6 @@
 				37D97FFC2301E15100273C52 /* Info.plist */,
 			);
 			name = "Supporting files";
-			sourceTree = "<group>";
-		};
-		37F3C932236DE79D009C864E /* CenteredItemCollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				376451D6234BC7C900CE6A1E /* CenteredItemCollectionView.swift */,
-				37F3C933236DE7F4009C864E /* CenteredItemCollectionViewFlowLayout.swift */,
-			);
-			path = CenteredItemCollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,7 +148,6 @@
 			files = (
 				376451D5234BBBC300CE6A1E /* CenteredItemLocator.swift in Sources */,
 				37F3C934236DE7F4009C864E /* CenteredItemCollectionViewFlowLayout.swift in Sources */,
-				376451D7234BC7C900CE6A1E /* CenteredItemCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
