@@ -44,9 +44,9 @@ public final class CenteredItemLocator {
         }?.indexPath
     }
     
-    public func scrollToItem(at indexPath: IndexPath, toBeCenteredIn collectionView: UICollectionView) {
+    public func contentOffset(for indexPath: IndexPath, toBeCenteredIn collectionView: UICollectionView) -> CGPoint? {
         guard let layoutAttributes = collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath) else {
-            return
+            return nil
         }
         
         let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
@@ -65,7 +65,13 @@ public final class CenteredItemLocator {
         let minimumYPosition = -collectionView.adjustedContentInset.top
         let xPosition = min(max(proposedXPosition, minimumXPosition), maximumXPosition)
         let yPosition = min(max(proposedYPosition, minimumYPosition), maximumYPosition)
-        let contentOffset = CGPoint(x: xPosition, y: yPosition)
+        return CGPoint(x: xPosition, y: yPosition)
+    }
+    
+    public func scrollToItem(at indexPath: IndexPath, toBeCenteredIn collectionView: UICollectionView) {
+        guard let contentOffset = contentOffset(for: indexPath, toBeCenteredIn: collectionView) else {
+            return
+        }
         
         if delegate?.centeredItemLocator(self, shouldScrollTo: contentOffset) != false {
             collectionView.contentOffset = contentOffset
