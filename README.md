@@ -1,16 +1,16 @@
 <p align="center">
-<img width="600" height="600" src="Resources/title.png">
+<img width="600" height="450" src="Resources/title.png">
 </p>
 
-Collection view Layout with simple paging and rotation support
+## Collection view Layout with simple paging and rotation support
 
 There are two CollectionViewFlowLayout:
 - `CenteredItemCollectionViewFlowLayout`
     - Scrolls the collectionView during rotation to show the same item that was visible before rotation
-    - <img width="600" height="300" src="Resources/line-curve.gif">
+    - <img width="600" height="531" src="Resources/centered-item-example.gif">
 - `PagedCollectionViewFlowLayout`
     - Scales the cells during rotation so they always cover the whole page.
-    - <img width="600" height="300" src="Resources/line-curve.gif">
+    - <img width="600" height="531" src="Resources/paged-example.gif">
 
 
 # License
