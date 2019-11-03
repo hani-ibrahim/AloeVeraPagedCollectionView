@@ -1,11 +1,16 @@
-# AloeVera Paged CollectionView
-Collection view Layout with paging and rotation support
+<p align="center">
+<img width="600" height="600" src="Resources/title.png">
+</p>
+
+Collection view Layout with simple paging and rotation support
 
 There are two CollectionViewFlowLayout:
 - `CenteredItemCollectionViewFlowLayout`
     - Scrolls the collectionView during rotation to show the same item that was visible before rotation
+    - <img width="600" height="300" src="Resources/line-curve.gif">
 - `PagedCollectionViewFlowLayout`
     - Scales the cells during rotation so they always cover the whole page.
+    - <img width="600" height="300" src="Resources/line-curve.gif">
 
 
 # License
