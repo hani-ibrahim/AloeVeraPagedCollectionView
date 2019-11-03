@@ -9,11 +9,16 @@
 import UIKit
 
 /// Changes the cells sizes during rotation to fill the whole collection view
-/// You must call `willRotate()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
+/// ⚠️ You must call `willRotate()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
 open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
     
+    /// The insets for each page individual
     public var pageInsets: UIEdgeInsets = .zero
+    
+    /// The spacing between each page that is only visible during scrolling
     public var pageSpacing: CGFloat = .zero
+    
+    /// When set to `false` -> the cells will fill the whole available space
     public var shouldRespectAdjustedContentInset = true
     
     open override func prepare() {

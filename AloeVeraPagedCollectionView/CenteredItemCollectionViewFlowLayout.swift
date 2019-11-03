@@ -9,9 +9,10 @@
 import UIKit
 
 /// FlowLayout that uses `CenteredItemLocator` to scroll to the centered item after device rotation
-/// You must call `willRotate()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
+/// ⚠️ You must call `willRotate()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
 open class CenteredItemCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
+    /// Useful to subscribe to it as the delegate and customize the behavior
     public let centeredItemLocator = CenteredItemLocator()
     
     private var lastLocatedCenteredItemIndexPath: IndexPath? = nil
@@ -23,6 +24,7 @@ open class CenteredItemCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
     }
     
+    /// ⚠️ Must be called before the rotation start
     public func willRotate() {
         if let collectionView = collectionView {
             lastLocatedCenteredItemIndexPath = centeredItemLocator.locateCenteredItem(in: collectionView, bounds: collectionView.bounds)

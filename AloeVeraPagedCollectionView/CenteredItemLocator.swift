@@ -9,8 +9,18 @@
 import UIKit
 
 public protocol CenteredItemLocatorDelegate: AnyObject {
+    /// Useful to change the visible center of the CollectionView (for example when the part of the CollectionView is cover by other view)
+    /// Default: `.zero`
     func centerOffset(for locator: CenteredItemLocator) -> CGPoint
+    
+    /// Asks the delegate if there are any cells that it should not consider while locating the centered item
+    /// Useful when there are cells that are used as header or footer
+    /// Default: `falue` ... means all cells would be considered
     func centeredItemLocator(_ locator: CenteredItemLocator, shouldExcludeItemAt indexPath: IndexPath) -> Bool
+    
+    /// Asks the delegate for confirmation before scrolling
+    /// Useful if the view is not in a state that can scroll for any business reason
+    /// Default: `true` ... always scroll
     func centeredItemLocator(_ locator: CenteredItemLocator, shouldScrollTo contentOffset: CGPoint) -> Bool
 }
 
@@ -23,6 +33,7 @@ public final class CenteredItemLocator {
         
     }
     
+    /// Locale the centered item in the given `bounds` for `collectionView`
     public func locateCenteredItem(in collectionView: UICollectionView, bounds: CGRect) -> IndexPath? {
         guard let layoutAttributesArray = collectionView.collectionViewLayout.layoutAttributesForElements(in: bounds) else {
             return nil
@@ -44,6 +55,7 @@ public final class CenteredItemLocator {
         }?.indexPath
     }
     
+    /// Returns the offset that will display the `indexPath` centered in the `collectionView`
     public func contentOffset(for indexPath: IndexPath, toBeCenteredIn collectionView: UICollectionView) -> CGPoint? {
         guard let layoutAttributes = collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath) else {
             return nil
@@ -68,6 +80,7 @@ public final class CenteredItemLocator {
         return CGPoint(x: xPosition, y: yPosition)
     }
     
+    /// Scroll to the offset that will display the `indexPath` centered in the `collectionView`
     public func scrollToItem(at indexPath: IndexPath, toBeCenteredIn collectionView: UICollectionView) {
         guard let contentOffset = contentOffset(for: indexPath, toBeCenteredIn: collectionView) else {
             return

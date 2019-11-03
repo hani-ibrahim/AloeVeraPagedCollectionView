@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3793711F2348B4BF00540553 /* DemoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793711E2348B4BF00540553 /* DemoCollectionViewCell.swift */; };
+		3793711F2348B4BF00540553 /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793711E2348B4BF00540553 /* TestCollectionViewCell.swift */; };
 		379371232348B77E00540553 /* UICollectionView+dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379371222348B77E00540553 /* UICollectionView+dequeue.swift */; };
+		37A8C11F236E5A9D00C9D896 /* CenteredItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C11E236E5A9D00C9D896 /* CenteredItemViewController.swift */; };
+		37A8C121236E5AA900C9D896 /* PagedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C120236E5AA900C9D896 /* PagedViewController.swift */; };
 		37D980122301E2FB00273C52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D980112301E2FB00273C52 /* AppDelegate.swift */; };
-		37D980142301E2FB00273C52 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D980132301E2FB00273C52 /* DemoViewController.swift */; };
 		37D980172301E2FB00273C52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37D980152301E2FB00273C52 /* Main.storyboard */; };
 		37D980192301E2FB00273C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D980182301E2FB00273C52 /* Assets.xcassets */; };
 		37D9801C2301E2FB00273C52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37D9801A2301E2FB00273C52 /* LaunchScreen.storyboard */; };
@@ -50,11 +51,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3793711E2348B4BF00540553 /* DemoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoCollectionViewCell.swift; sourceTree = "<group>"; };
+		3793711E2348B4BF00540553 /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
 		379371222348B77E00540553 /* UICollectionView+dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+dequeue.swift"; sourceTree = "<group>"; };
+		37A8C11E236E5A9D00C9D896 /* CenteredItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredItemViewController.swift; sourceTree = "<group>"; };
+		37A8C120236E5AA900C9D896 /* PagedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedViewController.swift; sourceTree = "<group>"; };
 		37D9800E2301E2FB00273C52 /* PagedCollectionViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagedCollectionViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D980112301E2FB00273C52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		37D980132301E2FB00273C52 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		37D980162301E2FB00273C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37D980182301E2FB00273C52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37D9801B2301E2FB00273C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -95,8 +97,9 @@
 			isa = PBXGroup;
 			children = (
 				37D980112301E2FB00273C52 /* AppDelegate.swift */,
-				37D980132301E2FB00273C52 /* DemoViewController.swift */,
-				3793711E2348B4BF00540553 /* DemoCollectionViewCell.swift */,
+				37A8C11E236E5A9D00C9D896 /* CenteredItemViewController.swift */,
+				37A8C120236E5AA900C9D896 /* PagedViewController.swift */,
+				3793711E2348B4BF00540553 /* TestCollectionViewCell.swift */,
 				379371222348B77E00540553 /* UICollectionView+dequeue.swift */,
 				37D980152301E2FB00273C52 /* Main.storyboard */,
 				37D980232301E33500273C52 /* Supporting files */,
@@ -219,9 +222,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37D980142301E2FB00273C52 /* DemoViewController.swift in Sources */,
+				37A8C11F236E5A9D00C9D896 /* CenteredItemViewController.swift in Sources */,
+				37A8C121236E5AA900C9D896 /* PagedViewController.swift in Sources */,
 				379371232348B77E00540553 /* UICollectionView+dequeue.swift in Sources */,
-				3793711F2348B4BF00540553 /* DemoCollectionViewCell.swift in Sources */,
+				3793711F2348B4BF00540553 /* TestCollectionViewCell.swift in Sources */,
 				37D980122301E2FB00273C52 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,7 +311,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -362,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -378,10 +382,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A348U4PQP3;
 				INFOPLIST_FILE = PagedCollectionViewExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,10 +404,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A348U4PQP3;
 				INFOPLIST_FILE = PagedCollectionViewExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

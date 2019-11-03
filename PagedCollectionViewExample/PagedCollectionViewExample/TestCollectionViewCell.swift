@@ -1,5 +1,5 @@
 //
-//  DemoCollectionViewCell.swift
+//  TestCollectionViewCell.swift
 //  PagedCollectionViewExample
 //
 //  Created by Hani on 05.10.19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DemoCollectionViewCell: UICollectionViewCell {
+final class TestCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private(set) var titleLabel: UILabel!
     
