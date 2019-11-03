@@ -7,9 +7,19 @@
 There are two CollectionViewFlowLayout:
 - `CenteredItemCollectionViewFlowLayout`
     - Scrolls the collectionView during rotation to show the same item that was visible before rotation
+    - <b>Available customizations</b> (Check `CenteredItemLocatorDelegate`):
+        - Center of the collection view
+        - Cells to exclude during calculation
+        - Ability to reject scrolling
+        <br><br>
     <img width="600" height="520" src="Resources/centered-item-example.gif">
 - `PagedCollectionViewFlowLayout`
     - Scales the cells during rotation so they always cover the whole page.
+    - <b>Available customizations</b>: (Check `PagedCollectionViewFlowLayout`)
+        - Set page insets for each page
+        - Set spacing between page that is only visible during scrolling
+        - Decide whether the cells are displayed full screen or inside the safe Area region
+        <br><br>
     <img width="600" height="520" src="Resources/paged-example.gif">
 
 
