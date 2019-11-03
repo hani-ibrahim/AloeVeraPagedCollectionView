@@ -7,10 +7,10 @@
 There are two CollectionViewFlowLayout:
 - `CenteredItemCollectionViewFlowLayout`
     - Scrolls the collectionView during rotation to show the same item that was visible before rotation
-    - <img width="600" height="531" src="Resources/centered-item-example.gif">
+    <img width="600" height="531" src="Resources/centered-item-example.gif">
 - `PagedCollectionViewFlowLayout`
     - Scales the cells during rotation so they always cover the whole page.
-    - <img width="600" height="531" src="Resources/paged-example.gif">
+    <img width="600" height="531" src="Resources/paged-example.gif">
 
 
 # License
