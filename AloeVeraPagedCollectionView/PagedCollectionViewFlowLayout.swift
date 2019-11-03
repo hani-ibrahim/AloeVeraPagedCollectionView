@@ -16,19 +16,13 @@ open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
     public var pageSpacing: CGFloat = .zero
     public var shouldRespectAdjustedContentInset = true
     
-    public override init() {
-        super.init()
-        setup()
-    }
-    
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setup()
-    }
-    
     open override func prepare() {
         if let collectionView = collectionView {
+            minimumInteritemSpacing = 0
+            sectionInset = .zero
+            collectionView.decelerationRate = .fast
             collectionView.contentInset = pageInsets
+            
             if scrollDirection == .horizontal {
                 minimumLineSpacing = pageInsets.horizontalEdges + pageSpacing
             } else {
@@ -53,20 +47,32 @@ open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
     }
     
     open override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        guard let collectionView = collectionView,
-            let indexPath = centeredItemLocator.locateCenteredItem(in: collectionView),
+        guard let collectionView = collectionView else {
+            return proposedContentOffset
+        }
+        
+        var origin = collectionView.bounds.origin
+        let speedThreshold: CGFloat = 0.5
+        if scrollDirection == .horizontal {
+            if velocity.x > speedThreshold {
+                origin.x += collectionView.bounds.width
+            } else if velocity.x < -speedThreshold {
+                origin.x -= collectionView.bounds.width
+            }
+        } else {
+            if velocity.y > speedThreshold {
+                origin.y += collectionView.bounds.height
+            } else if velocity.y < -speedThreshold {
+                origin.y -= collectionView.bounds.height
+            }
+        }
+        
+        let bounds = CGRect(origin: proposedContentOffset, size: collectionView.bounds.size)
+        guard let indexPath = centeredItemLocator.locateCenteredItem(in: collectionView, bounds: bounds),
             let contectOffset = centeredItemLocator.contentOffset(for: indexPath, toBeCenteredIn: collectionView) else {
                 return proposedContentOffset
         }
         return contectOffset
-    }
-}
-
-private extension PagedCollectionViewFlowLayout {
-    func setup() {
-        minimumInteritemSpacing = 0
-        minimumLineSpacing = 0
-        sectionInset = .zero
     }
 }
 

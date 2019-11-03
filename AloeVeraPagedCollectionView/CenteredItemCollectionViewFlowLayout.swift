@@ -25,7 +25,7 @@ open class CenteredItemCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     public func willRotate() {
         if let collectionView = collectionView {
-            lastLocatedCenteredItemIndexPath = centeredItemLocator.locateCenteredItem(in: collectionView)
+            lastLocatedCenteredItemIndexPath = centeredItemLocator.locateCenteredItem(in: collectionView, bounds: collectionView.bounds)
         }
     }
 }

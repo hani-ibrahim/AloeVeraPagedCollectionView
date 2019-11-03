@@ -23,16 +23,16 @@ public final class CenteredItemLocator {
         
     }
     
-    public func locateCenteredItem(in collectionView: UICollectionView) -> IndexPath? {
-        guard let layoutAttributesArray = collectionView.collectionViewLayout.layoutAttributesForElements(in: collectionView.bounds) else {
+    public func locateCenteredItem(in collectionView: UICollectionView, bounds: CGRect) -> IndexPath? {
+        guard let layoutAttributesArray = collectionView.collectionViewLayout.layoutAttributesForElements(in: bounds) else {
             return nil
         }
         
         let adjustedCenter = collectionView.adjustedCenter
         let centerOffset = delegate?.centerOffset(for: self) ?? .zero
         let visibleCenter = CGPoint(
-            x: adjustedCenter.x + centerOffset.x + collectionView.bounds.minX,
-            y: adjustedCenter.y + centerOffset.y + collectionView.bounds.minY
+            x: adjustedCenter.x + centerOffset.x + bounds.minX,
+            y: adjustedCenter.y + centerOffset.y + bounds.minY
         )
 
         return layoutAttributesArray.filter { layoutAttributes in
