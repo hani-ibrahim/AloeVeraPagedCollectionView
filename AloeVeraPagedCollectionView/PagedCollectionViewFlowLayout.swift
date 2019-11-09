@@ -41,8 +41,6 @@ open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
             minimumLineSpacing = pageSpacing
             sectionInset = .zero
             collectionView.contentInsetAdjustmentBehavior = .never
-            collectionView.contentInset = .zero//pageProperties.insets
-            
             shouldConfigurePage = false
         }
         
