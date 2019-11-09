@@ -15,7 +15,7 @@ open class CenteredItemCollectionViewFlowLayout: UICollectionViewFlowLayout {
     /// Useful to subscribe to it as the delegate and customize the behavior
     public let centeredItemLocator = CenteredItemLocator()
     
-    private var lastLocatedCenteredItemIndexPath: IndexPath? = nil
+    public private(set) var lastLocatedCenteredItemIndexPath: IndexPath? = nil
     
     open override func prepare(forAnimatedBoundsChange oldBounds: CGRect) {
         super.prepare(forAnimatedBoundsChange: oldBounds)
