@@ -9,7 +9,7 @@
 import UIKit
 
 /// Changes the cells sizes during rotation to fill the whole collection view
-/// ⚠️ You must call `willRotate()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
+/// ⚠️ You must call `collectionViewSizeWillChange()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
 open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
     
     /// The insets for each page individual
@@ -18,37 +18,33 @@ open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
     /// The spacing between each page that is only visible during scrolling
     public var pageSpacing: CGFloat = .zero
     
-    /// When set to `false` -> the cells will fill the whole available space
-    public var shouldRespectAdjustedContentInset = true
+    open override func collectionViewSizeWillChange() {
+        super.collectionViewSizeWillChange()
+        invalidateLayout()
+    }
     
     open override func prepare() {
-        if let collectionView = collectionView {
-            minimumInteritemSpacing = 0
-            sectionInset = .zero
-            collectionView.decelerationRate = .fast
-            collectionView.contentInset = pageInsets
-            
-            if scrollDirection == .horizontal {
-                minimumLineSpacing = pageInsets.horizontalEdges + pageSpacing
-            } else {
-                minimumLineSpacing = pageInsets.verticalEdges + pageSpacing
-            }
-            
-            let contentInsets: UIEdgeInsets
-            if shouldRespectAdjustedContentInset {
-                contentInsets = collectionView.adjustedContentInset
-                collectionView.contentInsetAdjustmentBehavior = .automatic
-            } else {
-                contentInsets = collectionView.contentInset
-                collectionView.contentInsetAdjustmentBehavior = .never
-            }
-            
-            itemSize = CGSize(
-                width: collectionView.bounds.size.width - contentInsets.horizontalEdges,
-                height: collectionView.bounds.size.height - contentInsets.verticalEdges
-            )
+        defer {
+            super.prepare()
         }
-        super.prepare()
+        
+        guard let collectionView = collectionView else {
+            return
+        }
+        
+        minimumInteritemSpacing = 0
+        sectionInset = .zero
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.decelerationRate = .fast
+        collectionView.contentInset = pageInsets
+        
+        if scrollDirection == .horizontal {
+            minimumLineSpacing = pageInsets.right + pageInsets.left + pageSpacing
+        } else {
+            minimumLineSpacing = pageInsets.top + pageInsets.bottom + pageSpacing
+        }
+        
+        itemSize = collectionView.bounds.inset(by: collectionView.contentInset).size
     }
     
     open override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
@@ -79,14 +75,26 @@ open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
         }
         return contectOffset
     }
-}
-
-private extension UIEdgeInsets {
-    var horizontalEdges: CGFloat {
-        left + right
+    
+    override open func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard let collectionView = collectionView, let rotatingIndexPath = lastLocatedCenteredItemIndexPath, itemIndexPath != rotatingIndexPath else {
+            return nil
+        }
+        
+        // Sometimes there are overlapping cells appears during rotation
+        // So hiding the unneeded cells by moving them far away
+        let attributes = layoutAttributesForItem(at: itemIndexPath)
+        if itemIndexPath < rotatingIndexPath {
+            attributes?.frame.origin.x -= collectionView.bounds.width
+            attributes?.frame.origin.y -= collectionView.bounds.height
+        } else {
+            attributes?.frame.origin.x += collectionView.bounds.width
+            attributes?.frame.origin.y += collectionView.bounds.height
+        }
+        return attributes
     }
     
-    var verticalEdges: CGFloat {
-        top + bottom
+    override open func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        layoutAttributesForItem(at: itemIndexPath)
     }
 }
