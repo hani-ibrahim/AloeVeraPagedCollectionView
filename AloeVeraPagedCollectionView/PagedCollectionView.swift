@@ -8,23 +8,19 @@
 
 import UIKit
 
-open class PagedCollectionView: UIView {
+public class PagedCollectionView: UIView {
     
-    open var collectionView = UICollectionView() {
+    public lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+    public var pageSpacing: CGFloat = 0 {
         didSet {
-            collectionView.collectionViewLayout = collectionViewLayout
-            setup()
-        }
-    }
-    open var collectionViewLayout = PagedCollectionViewFlowLayout() {
-        didSet {
-            collectionView.collectionViewLayout = collectionViewLayout
             configure()
         }
     }
     
-    private var rightConstraint: NSLayoutConstraint?
-    private var bottomConstraint: NSLayoutConstraint?
+    public let collectionViewLayout = PagedCollectionViewFlowLayout()
+    
+    private var rightConstraint: NSLayoutConstraint!
+    private var bottomConstraint: NSLayoutConstraint!
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,32 +32,36 @@ open class PagedCollectionView: UIView {
         setup()
     }
     
-    open func configure() {
+    public func configure() {
         if collectionViewLayout.scrollDirection == .horizontal {
-            collectionView.contentInset.right = collectionViewLayout.pageSpacing
+            collectionView.contentInset.right = pageSpacing
             collectionView.contentInset.bottom = 0
-            rightConstraint?.constant = collectionViewLayout.pageSpacing
+            rightConstraint?.constant = pageSpacing
             bottomConstraint?.constant = 0
         } else {
             collectionView.contentInset.right = 0
-            collectionView.contentInset.bottom = collectionViewLayout.pageSpacing
+            collectionView.contentInset.bottom = pageSpacing
             rightConstraint?.constant = 0
-            bottomConstraint?.constant = collectionViewLayout.pageSpacing
+            bottomConstraint?.constant = pageSpacing
         }
+        collectionViewLayout.pageSpacing = pageSpacing
     }
 }
 
 private extension PagedCollectionView {
     func setup() {
-        subviews.forEach { $0.removeFromSuperview() }
         addSubview(collectionView)
+        translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = backgroundColor
         
         rightConstraint = collectionView.rightAnchor.constraint(equalTo: rightAnchor)
         bottomConstraint = collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         
         NSLayoutConstraint.activate([
-            rightConstraint!,
-            bottomConstraint!,
+            rightConstraint,
+            bottomConstraint,
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leftAnchor.constraint(equalTo: leftAnchor)
         ])
