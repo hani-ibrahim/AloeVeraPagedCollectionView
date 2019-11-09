@@ -12,29 +12,11 @@ import UIKit
 /// ⚠️ You must call `collectionViewSizeWillChange()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
 open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
     
-    public struct PageProperties {
-        /// The insets for each individual page
-        public let insets: UIEdgeInsets
-        
-        /// The spacing between each page that is only visible during scrolling
-        public let spacing: CGFloat
-        
-        public init(insets: UIEdgeInsets, spacing: CGFloat) {
-            self.insets = insets
-            self.spacing = spacing
-        }
-    }
-    
-    /// Properties for the page, will trigger `invalidateLayout` when set
-    public var pageProperties = PageProperties(insets: .zero, spacing: .zero) {
+    /// The spacing between each page which is only visible during scrolling
+    public var pageSpacing: CGFloat = 0 {
         didSet {
             shouldConfigurePage = true
             invalidateLayout()
-        }
-    }
-    open override var scrollDirection: UICollectionView.ScrollDirection {
-        didSet {
-            shouldConfigurePage = true
         }
     }
     
@@ -56,15 +38,11 @@ open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
         
         if shouldConfigurePage {
             minimumInteritemSpacing = 0
+            minimumLineSpacing = pageSpacing
             sectionInset = .zero
             collectionView.contentInsetAdjustmentBehavior = .never
-            collectionView.contentInset = pageProperties.insets
+            collectionView.contentInset = .zero//pageProperties.insets
             
-            if scrollDirection == .horizontal {
-                minimumLineSpacing = pageProperties.insets.right + pageProperties.insets.left + pageProperties.spacing
-            } else {
-                minimumLineSpacing = pageProperties.insets.top + pageProperties.insets.bottom + pageProperties.spacing
-            }
             shouldConfigurePage = false
         }
         
@@ -78,7 +56,7 @@ open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
         
         // Sometimes there are overlapping cells appears during rotation
         // So hiding the unneeded cells by moving them far away
-        let attributes = layoutAttributesForItem(at: itemIndexPath)
+        let attributes = layoutAttributesForItem(at: itemIndexPath)?.copy() as? UICollectionViewLayoutAttributes
         if itemIndexPath < rotatingIndexPath {
             attributes?.frame.origin.x -= collectionView.bounds.width
             attributes?.frame.origin.y -= collectionView.bounds.height
