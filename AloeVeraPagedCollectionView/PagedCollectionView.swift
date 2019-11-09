@@ -8,9 +8,13 @@
 
 import UIKit
 
+/// Simple UIView with embded CollectionView that support paging scrolling with spaces and adjust rotation
+/// ⚠️ You must call `collectionViewLayout.collectionViewSizeWillChange()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
 public class PagedCollectionView: UIView {
     
     public lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+    
+    /// Set the space between pages horizontally or vertically
     public var pageSpacing: CGFloat = 0 {
         didSet {
             configure()
@@ -32,6 +36,8 @@ public class PagedCollectionView: UIView {
         setup()
     }
     
+    /// Readjust the collectionView to support paging properly
+    /// You might need to call this function in case you changed some properties like `scrollDirection`
     public func configure() {
         if collectionViewLayout.scrollDirection == .horizontal {
             collectionView.contentInset.right = pageSpacing

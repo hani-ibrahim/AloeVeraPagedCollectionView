@@ -170,7 +170,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Xc-GM-cZ9" customClass="PagedCollectionView" customModule="AloeVeraPagedCollectionView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
@@ -178,7 +178,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4Xc-GM-cZ9" secondAttribute="trailing" id="Qdo-xp-ITt"/>
                             <constraint firstAttribute="bottom" secondItem="4Xc-GM-cZ9" secondAttribute="bottom" id="eCh-mH-nsk"/>
-                            <constraint firstItem="4Xc-GM-cZ9" firstAttribute="top" secondItem="sge-6q-2rD" secondAttribute="top" id="nWQ-rk-B4h"/>
+                            <constraint firstItem="4Xc-GM-cZ9" firstAttribute="top" secondItem="Gfi-IG-XQT" secondAttribute="top" id="in8-3N-Y4f"/>
                             <constraint firstItem="4Xc-GM-cZ9" firstAttribute="leading" secondItem="Gfi-IG-XQT" secondAttribute="leading" id="yID-Td-Aii"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sge-6q-2rD"/>

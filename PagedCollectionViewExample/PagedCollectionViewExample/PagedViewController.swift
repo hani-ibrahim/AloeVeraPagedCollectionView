@@ -18,8 +18,10 @@ final class PagedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pagedCollectionView.pageSpacing = 50
+        pagedCollectionView.collectionViewLayout.scrollDirection = .horizontal
         pagedCollectionView.collectionView.dataSource = self
         pagedCollectionView.collectionView.registerCell(ofType: PagedCollectionViewCell.self)
+        pagedCollectionView.configure()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
