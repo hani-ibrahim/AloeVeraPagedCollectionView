@@ -12,11 +12,33 @@ import UIKit
 /// ⚠️ You must call `collectionViewSizeWillChange()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
 open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
     
-    /// The insets for each page individual
-    public var pageInsets: UIEdgeInsets = .zero
+    public struct PageProperties {
+        /// The insets for each individual page
+        public let insets: UIEdgeInsets
+        
+        /// The spacing between each page that is only visible during scrolling
+        public let spacing: CGFloat
+        
+        public init(insets: UIEdgeInsets, spacing: CGFloat) {
+            self.insets = insets
+            self.spacing = spacing
+        }
+    }
     
-    /// The spacing between each page that is only visible during scrolling
-    public var pageSpacing: CGFloat = .zero
+    /// Properties for the page, will trigger `invalidateLayout` when set
+    public var pageProperties = PageProperties(insets: .zero, spacing: .zero) {
+        didSet {
+            shouldConfigurePage = true
+            invalidateLayout()
+        }
+    }
+    open override var scrollDirection: UICollectionView.ScrollDirection {
+        didSet {
+            shouldConfigurePage = true
+        }
+    }
+    
+    private var shouldConfigurePage = true
     
     open override func collectionViewSizeWillChange() {
         super.collectionViewSizeWillChange()
@@ -32,51 +54,24 @@ open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
             return
         }
         
-        minimumInteritemSpacing = 0
-        sectionInset = .zero
-        collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.decelerationRate = .fast
-        collectionView.contentInset = pageInsets
-        
-        if scrollDirection == .horizontal {
-            minimumLineSpacing = pageInsets.right + pageInsets.left + pageSpacing
-        } else {
-            minimumLineSpacing = pageInsets.top + pageInsets.bottom + pageSpacing
+        if shouldConfigurePage {
+            minimumInteritemSpacing = 0
+            sectionInset = .zero
+            collectionView.contentInsetAdjustmentBehavior = .never
+            collectionView.contentInset = pageProperties.insets
+            
+            if scrollDirection == .horizontal {
+                minimumLineSpacing = pageProperties.insets.right + pageProperties.insets.left + pageProperties.spacing
+            } else {
+                minimumLineSpacing = pageProperties.insets.top + pageProperties.insets.bottom + pageProperties.spacing
+            }
+            shouldConfigurePage = false
         }
         
         itemSize = collectionView.bounds.inset(by: collectionView.contentInset).size
     }
     
-    open override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        guard let collectionView = collectionView else {
-            return proposedContentOffset
-        }
-        
-        var origin = collectionView.bounds.origin
-        let speedThreshold: CGFloat = 0.5
-        if scrollDirection == .horizontal {
-            if velocity.x > speedThreshold {
-                origin.x += collectionView.bounds.width
-            } else if velocity.x < -speedThreshold {
-                origin.x -= collectionView.bounds.width
-            }
-        } else {
-            if velocity.y > speedThreshold {
-                origin.y += collectionView.bounds.height
-            } else if velocity.y < -speedThreshold {
-                origin.y -= collectionView.bounds.height
-            }
-        }
-        
-        let bounds = CGRect(origin: proposedContentOffset, size: collectionView.bounds.size)
-        guard let indexPath = centeredItemLocator.locateCenteredItem(in: collectionView, bounds: bounds),
-            let contectOffset = centeredItemLocator.contentOffset(for: indexPath, toBeCenteredIn: collectionView) else {
-                return proposedContentOffset
-        }
-        return contectOffset
-    }
-    
-    override open func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard let collectionView = collectionView, let rotatingIndexPath = lastLocatedCenteredItemIndexPath, itemIndexPath != rotatingIndexPath else {
             return nil
         }
@@ -94,7 +89,7 @@ open class PagedCollectionViewFlowLayout: CenteredItemCollectionViewFlowLayout {
         return attributes
     }
     
-    override open func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         layoutAttributesForItem(at: itemIndexPath)
     }
 }
