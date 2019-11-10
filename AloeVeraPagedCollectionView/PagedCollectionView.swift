@@ -42,6 +42,8 @@ public class PagedCollectionView: UIView {
         if collectionViewLayout.scrollDirection == .horizontal {
             collectionView.contentInset.right = pageSpacing
             collectionView.contentInset.bottom = 0
+            collectionView.scrollIndicatorInsets.right = pageSpacing
+            collectionView.scrollIndicatorInsets.bottom = 0
             rightConstraint?.constant = pageSpacing
             bottomConstraint?.constant = 0
         } else {
@@ -49,6 +51,8 @@ public class PagedCollectionView: UIView {
             collectionView.contentInset.bottom = pageSpacing
             rightConstraint?.constant = 0
             bottomConstraint?.constant = pageSpacing
+            collectionView.scrollIndicatorInsets.right = 0
+            collectionView.scrollIndicatorInsets.bottom = pageSpacing
         }
         collectionViewLayout.pageSpacing = pageSpacing
     }
