@@ -74,6 +74,14 @@ open class PagedCollectionViewLayout: UICollectionViewLayout, CenteredItemLocati
         newBounds.size != cache.collectionViewSize
     }
     
+    open override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        nil
+    }
+    
+    open override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        cache.attributes[itemIndexPath]
+    }
+    
     /// Scroll the collection view to the given index
     open func scrollToItem(at indexPath: IndexPath) {
         guard let collectionView = collectionView else {
