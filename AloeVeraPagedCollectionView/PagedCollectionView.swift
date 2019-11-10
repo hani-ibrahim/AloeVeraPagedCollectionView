@@ -36,6 +36,11 @@ public class PagedCollectionView: UIView {
         setup()
     }
     
+    /// Scroll the collection view to the given index
+    public func scrollToItem(at indexPath: IndexPath) {
+        collectionViewLayout.centeredItemLocator.scrollToItem(at: indexPath, toBeCenteredIn: collectionView)
+    }
+    
     /// Readjust the collectionView to support paging properly
     /// You might need to call this function in case you changed some properties like `scrollDirection`
     public func configure() {
