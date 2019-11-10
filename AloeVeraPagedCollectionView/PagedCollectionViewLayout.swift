@@ -8,17 +8,17 @@
 
 import UIKit
 
-/// Arrange the items to be displayed in full collection view size and adjust it during rotation
+/// Arrange the items to be displayed in full collection view size and adjust its size during rotation
 open class PagedCollectionViewLayout: UICollectionViewLayout, CenteredItemLocating {
     
-    /// Spacing between pages outside that is only visible during scrolling
+    /// Spacing between the pages that is only visible during scrolling
     open var pageSpacing: CGFloat = 0
     
     /// The insets for each individual page
     open var pageInset: UIEdgeInsets = .zero
     
-    /// Insets for collection view that is not visible ... helpful when the collection view size is bigger than the superview
-    /// Used to enable paging support with spacing between pages
+    /// Insets for the collection view area that is not visible, helpful when the collection view size is bigger than its superview
+    /// Used to enable paging support with spaces between pages
     open var collectionViewInset: UIEdgeInsets = .zero
     
     /// When set to `false` -> the items will fill the whole available space
