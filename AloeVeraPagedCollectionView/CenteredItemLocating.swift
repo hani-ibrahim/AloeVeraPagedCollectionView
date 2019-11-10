@@ -24,6 +24,8 @@ public protocol CenteredItemLocatingDelegate: AnyObject {
     func centeredItemLocator(_ locator: CenteredItemLocating, shouldScrollTo contentOffset: CGPoint) -> Bool
 }
 
+public typealias ItemLocation = (indexPath: IndexPath, center: CGPoint)
+
 public protocol CenteredItemLocating {
     var delegate: CenteredItemLocatingDelegate? { get set }
 }
@@ -31,10 +33,9 @@ public protocol CenteredItemLocating {
 extension CenteredItemLocating {
     /// Locate the centered item in the given bounds
     /// - Parameters:
-    ///   - bounds: The current bounds of the scroll view
     ///   - contentVisibleCenter: The point in the `contentSize` to find the nearest item to it ... normally would be `CGPoint(x: bounds.midX, y: bounds.midY)`
     ///   - items: All the items in the scroll view to search among them
-    public func locateCenteredItem(in bounds: CGRect, near contentVisibleCenter: CGPoint, from items: [(indexPath: IndexPath, center: CGPoint)]) -> IndexPath? {
+    public func locateCenteredItem(near contentVisibleCenter: CGPoint, from items: [ItemLocation]) -> IndexPath? {
         let centerOffset = delegate?.centerOffset(for: self) ?? .zero
         let visibleCenter = CGPoint(
             x: centerOffset.x + contentVisibleCenter.x,
@@ -52,18 +53,18 @@ extension CenteredItemLocating {
     /// The requested content offset to center the item at the given position
     /// - Parameters:
     ///   - itemCenter: The center of the item to scroll to in the scroll view
-    ///   - bounds: The current bounds of the scroll view
+    ///   - size: The size of the scroll view
     ///   - viewableAreaCenter: The visible center point in the scroll view relative to the frame ... normally would be `CGPoint(x: bounds.size.width / 2, y: bounds.size.height / 2)`
     ///   - contentInset: The content inset of the scroll view
     ///   - contentSize: The content size of the scroll view
-    public func contentOffset(forItemAtPosition itemCenter: CGPoint, toBeCenteredIn bounds: CGRect, near viewableAreaCenter: CGPoint, within contentInset: UIEdgeInsets, contentSize: CGSize) -> CGPoint {
+    public func contentOffset(forItemAtPosition itemCenter: CGPoint, toBeCenteredIn size: CGSize, near viewableAreaCenter: CGPoint, within contentInset: UIEdgeInsets, contentSize: CGSize) -> CGPoint {
         let centerOffset = delegate?.centerOffset(for: self) ?? .zero
         let visibleXCenter = centerOffset.x + viewableAreaCenter.x
         let visibleYCenter = centerOffset.y + viewableAreaCenter.y
         let estimatedXPosition = itemCenter.x - visibleXCenter
         let estimatedYPosition = itemCenter.y - visibleYCenter
-        let maximumXPosition = contentSize.width - bounds.size.width + contentInset.right
-        let maximumYPosition = contentSize.height - bounds.size.height + contentInset.bottom
+        let maximumXPosition = contentSize.width - size.width + contentInset.right
+        let maximumYPosition = contentSize.height - size.height + contentInset.bottom
         let minimumXPosition = -contentInset.left
         let minimumYPosition = -contentInset.top
         let xPosition = min(max(estimatedXPosition, minimumXPosition), maximumXPosition)
