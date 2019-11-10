@@ -44,16 +44,7 @@ open class PagedCollectionViewLayout: UICollectionViewLayout, CenteredItemLocati
     
     open override func prepare(forAnimatedBoundsChange oldBounds: CGRect) {
         super.prepare(forAnimatedBoundsChange: oldBounds)
-        guard let collectionView = collectionView else {
-            return
-        }
-        
-        let oldProperties = properties(for: collectionView, bounds: oldBounds)
-        let oldCache = cache(for: collectionView, collectionViewSize: oldBounds.size, with: oldProperties)
-        let oldItems = oldCache.attributes.values.map { ItemLocation(indexPath: $0.indexPath, center: $0.center) }
-        let oldContentVisibleCenter = CGPoint(x: oldBounds.midX, y: oldBounds.midY)
-        
-        if let centeredItemIndexPath = locateCenteredItem(near: oldContentVisibleCenter, from: oldItems) {
+        if let centeredItemIndexPath = centeredItemIndexPath(in: oldBounds) {
             scrollToItem(at: centeredItemIndexPath)
         }
     }
@@ -80,6 +71,19 @@ open class PagedCollectionViewLayout: UICollectionViewLayout, CenteredItemLocati
     
     open override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         cache.attributes[itemIndexPath]
+    }
+    
+    /// Calculate the centered item in the given bounds
+    open func centeredItemIndexPath(in bounds: CGRect) -> IndexPath? {
+        guard let collectionView = collectionView else {
+            return nil
+        }
+        
+        let properties = self.properties(for: collectionView, bounds: bounds)
+        let cache = self.cache(for: collectionView, collectionViewSize: bounds.size, with: properties)
+        let items = cache.attributes.values.map { ItemLocation(indexPath: $0.indexPath, center: $0.center) }
+        let contentCenter = CGPoint(x: bounds.midX, y: bounds.midY)
+        return locateCenteredItem(near: contentCenter, from: items)
     }
     
     /// Scroll the collection view to the given index
