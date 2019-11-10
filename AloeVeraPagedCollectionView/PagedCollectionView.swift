@@ -52,6 +52,12 @@ public class PagedCollectionView: UIView {
         }
         collectionViewLayout.pageSpacing = pageSpacing
     }
+    
+    public override func layoutSubviews() {
+        /// Fixing bug where some constraints mismatch might appear in the console during rotation
+        collectionViewLayout.invalidateLayout()
+        super.layoutSubviews()
+    }
 }
 
 private extension PagedCollectionView {
