@@ -21,7 +21,7 @@ public class PagedCollectionView: UIView {
         }
     }
     
-    public let collectionViewLayout = PagedCollectionViewFlowLayout()
+    public let collectionViewLayout = PagedCollectionViewLayout()
     
     private var rightConstraint: NSLayoutConstraint!
     private var bottomConstraint: NSLayoutConstraint!
@@ -38,22 +38,22 @@ public class PagedCollectionView: UIView {
     
     /// Scroll the collection view to the given index
     public func scrollToItem(at indexPath: IndexPath) {
-        collectionViewLayout.centeredItemLocator.scrollToItem(at: indexPath, toBeCenteredIn: collectionView)
+//        collectionViewLayout.centeredItemLocator.scrollToItem(at: indexPath, toBeCenteredIn: collectionView)
     }
     
     /// Readjust the collectionView to support paging properly
     /// You might need to call this function in case you changed some properties like `scrollDirection`
     public func configure() {
         if collectionViewLayout.scrollDirection == .horizontal {
-            collectionView.contentInset.right = pageSpacing
-            collectionView.contentInset.bottom = 0
+            collectionViewLayout.contentInset.right = pageSpacing
+            collectionViewLayout.contentInset.bottom = 0
             collectionView.scrollIndicatorInsets.right = pageSpacing
             collectionView.scrollIndicatorInsets.bottom = 0
             rightConstraint?.constant = pageSpacing
             bottomConstraint?.constant = 0
         } else {
-            collectionView.contentInset.right = 0
-            collectionView.contentInset.bottom = pageSpacing
+            collectionViewLayout.contentInset.right = 0
+            collectionViewLayout.contentInset.bottom = pageSpacing
             rightConstraint?.constant = 0
             bottomConstraint?.constant = pageSpacing
             collectionView.scrollIndicatorInsets.right = 0
@@ -62,11 +62,11 @@ public class PagedCollectionView: UIView {
         collectionViewLayout.pageSpacing = pageSpacing
     }
     
-    public override func layoutSubviews() {
-        /// Fixing bug where some constraints mismatch might appear in the console during rotation
-        collectionViewLayout.invalidateLayout()
-        super.layoutSubviews()
-    }
+//    public override func layoutSubviews() {
+//        /// Fixing bug where some constraints mismatch might appear in the console during rotation
+//        collectionViewLayout.invalidateLayout()
+//        super.layoutSubviews()
+//    }
 }
 
 private extension PagedCollectionView {

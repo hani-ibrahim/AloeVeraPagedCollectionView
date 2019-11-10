@@ -26,7 +26,7 @@ final class PagedViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        pagedCollectionView.collectionViewLayout.collectionViewSizeWillChange()
+//        pagedCollectionView.collectionViewLayout.collectionViewSizeWillChange()
     }
 }
 

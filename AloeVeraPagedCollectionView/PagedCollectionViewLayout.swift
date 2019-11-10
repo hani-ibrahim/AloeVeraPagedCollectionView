@@ -11,141 +11,138 @@ import UIKit
 open class PagedCollectionViewLayout: UICollectionViewLayout {
     
     open var pageSpacing: CGFloat = 0
-    open var pageInsets: UIEdgeInsets = .zero
+    open var pageInset: UIEdgeInsets = .zero
+    open var contentInset: UIEdgeInsets = .zero
     open var shouldRespectAdjustedContentInset = true
     open var scrollDirection: UICollectionView.ScrollDirection = .horizontal
     
-    private var actualItemSize: CGSize = .zero
-    private var actualItemSpacing: CGFloat = 0
-    private var actualInsets: UIEdgeInsets = .zero
-    
-    private var cachedCollectionViewSize: CGSize = .zero
-    private var cachedIndexedAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
-    private var cachedFlatAttributes: [UICollectionViewLayoutAttributes] = []
-    private var cachedContentSize: CGSize = .zero
-    
-    open override var collectionViewContentSize: CGSize {
-        cachedContentSize
-    }
+    private var properties: Properties = .empty
+    private var cache: Cache = .empty
     
     open override func prepare() {
-        super.prepare()
-        
-        guard let collectionView = collectionView else {
-            return
+        if let collectionView = collectionView {
+            properties = properties(for: collectionView, bounds: collectionView.bounds)
+            cache = cache(for: collectionView)
         }
-        
-        clearCachedData()
-        updateActualData(in: collectionView)
-        updateCachedData(in: collectionView)
+        super.prepare()
+    }
+    
+    open override var collectionViewContentSize: CGSize {
+        cache.contentSize
     }
     
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var elementsFound = false
-        var foundElements: [UICollectionViewLayoutAttributes] = []
-        if scrollDirection == .horizontal {
-            for attributes in cachedFlatAttributes where !elementsFound {
-                if attributes.frame.minX < rect.maxX && attributes.frame.maxX > rect.minX {
-                    foundElements.append(attributes)
-                    elementsFound = true
-                } else if elementsFound {
-                    break
-                }
-            }
-        } else {
-            for attributes in cachedFlatAttributes where !elementsFound {
-                if attributes.frame.minY < rect.maxY && attributes.frame.maxY > rect.minY {
-                    foundElements.append(attributes)
-                    elementsFound = true
-                } else if elementsFound {
-                    break
-                }
-            }
-        }
-        return foundElements
+        cache.attributes.values.filter { $0.frame.intersects(rect) }
     }
     
     open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        cachedIndexedAttributes[indexPath]
+        cache.attributes[indexPath]
     }
     
     open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        newBounds.size != cachedCollectionViewSize
+        newBounds.size != cache.collectionViewSize
     }
 }
 
 private extension PagedCollectionViewLayout {
-    func clearCachedData() {
-        cachedIndexedAttributes.removeAll()
-        cachedFlatAttributes.removeAll()
+    struct Properties {
+        static let empty = Properties(itemSize: .zero, itemSpacing: 0, contentInset: .zero)
+        
+        let itemSize: CGSize
+        let itemSpacing: CGFloat
+        let contentInset: UIEdgeInsets
     }
     
-    func updateActualData(in collectionView: UICollectionView) {
-        collectionView.contentInsetAdjustmentBehavior = .automatic
-        let contentInsets = shouldRespectAdjustedContentInset ? collectionView.adjustedContentInset : collectionView.contentInset
-        collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.contentInset = .zero
+    struct Cache {
+        static let empty = Cache(collectionViewSize: .zero, attributes: [:], contentSize: .zero)
         
-        actualInsets = UIEdgeInsets(
-            top: contentInsets.top + pageInsets.top,
-            left: contentInsets.left + pageInsets.left,
-            bottom: contentInsets.bottom + pageInsets.bottom,
-            right: contentInsets.right + pageInsets.right
+        let collectionViewSize: CGSize
+        let attributes: [IndexPath: UICollectionViewLayoutAttributes]
+        let contentSize: CGSize
+    }
+}
+
+private extension PagedCollectionViewLayout {
+    func properties(for collectionView: UICollectionView, bounds: CGRect) -> Properties {
+        let adjustedContentInset = collectionView.adjustedContentInset(shouldRespect: shouldRespectAdjustedContentInset)
+        let finalContentInset = UIEdgeInsets(
+            top: adjustedContentInset.top + pageInset.top + contentInset.top,
+            left: adjustedContentInset.left + pageInset.left + contentInset.left,
+            bottom: adjustedContentInset.bottom + pageInset.bottom + contentInset.bottom,
+            right: adjustedContentInset.right + pageInset.right + contentInset.right
         )
         
-        actualItemSize = collectionView.bounds.inset(by: actualInsets).size
+        let itemSize = bounds.inset(by: finalContentInset).size
+        let itemSpacingInPage = scrollDirection == .horizontal ? bounds.size.width - itemSize.width : bounds.size.height - itemSize.height
+        let itemSpacing = itemSpacingInPage + pageSpacing
         
-        if scrollDirection == .horizontal {
-            actualItemSpacing = collectionView.bounds.size.width - actualItemSize.width + pageSpacing
-        } else {
-            actualItemSpacing = collectionView.bounds.size.height - actualItemSize.height + pageSpacing
-        }
+        return Properties(itemSize: itemSize, itemSpacing: itemSpacing, contentInset: finalContentInset)
     }
     
-    func updateCachedData(in collectionView: UICollectionView) {
-        cachedCollectionViewSize = collectionView.bounds.size
+    func cache(for collectionView: UICollectionView) -> Cache {
+        guard let dataSource = collectionView.dataSource else {
+            return .empty
+        }
         
-        if let dataSource = collectionView.dataSource {
-            let numberOfSections = dataSource.numberOfSections?(in: collectionView) ?? 1
-            (0 ..< numberOfSections).forEach { section in
-                let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
-                (0 ..< numberOfItems).forEach { item in
-                    let indexPath = IndexPath(item: item, section: section)
-                    let absoluteItemIndex = CGFloat(cachedFlatAttributes.count)
-                    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                    if scrollDirection == .horizontal {
-                        attributes.frame = CGRect(
-                            origin: CGPoint(
-                                x: actualInsets.left + absoluteItemIndex * (actualItemSize.width + actualItemSpacing),
-                                y: actualInsets.top
-                            ),
-                            size: actualItemSize
-                        )
-                    } else {
-                        attributes.frame = CGRect(
-                            origin: CGPoint(
-                                x: actualInsets.left,
-                                y: actualInsets.top + absoluteItemIndex * (actualItemSize.height + actualItemSpacing)
-                            ),
-                            size: actualItemSize
-                        )
-                    }
-                    cachedIndexedAttributes[indexPath] = attributes
-                    cachedFlatAttributes.append(attributes)
-                }
+        let numberOfSections = dataSource.numberOfSections?(in: collectionView) ?? 1
+        var attributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
+        (0 ..< numberOfSections).forEach { section in
+            let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
+            (0 ..< numberOfItems).forEach { item in
+                let indexPath = IndexPath(item: item, section: section)
+                let itemAttributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                itemAttributes.frame = properties.frame(forItemAtAbsoluteIndex: attributes.count, scrollDirection: scrollDirection)
+                attributes[indexPath] = itemAttributes
             }
         }
         
-        let numberOfItems = CGFloat(cachedFlatAttributes.count)
+        let collectionViewSize = collectionView.bounds.size
+        let contentSize = properties.contentSize(forCollectionViewSize: collectionViewSize, numberOfItems: attributes.count, scrollDirection: scrollDirection)
+        return Cache(collectionViewSize: collectionViewSize, attributes: attributes, contentSize: contentSize)
+    }
+}
+
+private extension UICollectionView {
+    func adjustedContentInset(shouldRespect: Bool) -> UIEdgeInsets {
+        if contentInset != .zero {
+            print("PagedCollectionViewLayout: Neglecting (UICollectionView.contentInset) value of (\(contentInset)), please use (PagedCollectionViewLayout.contentInset) instead.")
+            contentInset = .zero
+        }
+        
+        contentInsetAdjustmentBehavior = .automatic
+        let finalAdjustedContentInset = shouldRespect ? adjustedContentInset : .zero
+        contentInsetAdjustmentBehavior = .never
+        return finalAdjustedContentInset
+    }
+}
+
+private extension PagedCollectionViewLayout.Properties {
+    func frame(forItemAtAbsoluteIndex index: Int, scrollDirection: UICollectionView.ScrollDirection) -> CGRect {
+        let origin: CGPoint
         if scrollDirection == .horizontal {
-            cachedContentSize = CGSize(
-                width: numberOfItems * (actualItemSize.width + actualItemSpacing) - actualItemSpacing + actualInsets.right + actualInsets.left,
-                height: collectionView.bounds.size.height
+            origin = CGPoint(
+                x: contentInset.left + CGFloat(index) * (itemSize.width + itemSpacing),
+                y: contentInset.top
             )
         } else {
-            cachedContentSize = CGSize(
-                width: collectionView.bounds.size.width,
-                height: numberOfItems * (actualItemSize.height + actualItemSpacing) - actualItemSpacing + actualInsets.top + actualInsets.bottom
+            origin = CGPoint(
+                x: contentInset.left,
+                y: contentInset.top + CGFloat(index) * (itemSize.height + itemSpacing)
+            )
+        }
+        return CGRect(origin: origin, size: itemSize)
+    }
+    
+    func contentSize(forCollectionViewSize collectionViewSize: CGSize, numberOfItems: Int, scrollDirection: UICollectionView.ScrollDirection) -> CGSize {
+        if scrollDirection == .horizontal {
+            return CGSize(
+                width: CGFloat(numberOfItems) * (itemSize.width + itemSpacing) - itemSpacing + contentInset.right + contentInset.left,
+                height: collectionViewSize.height
+            )
+        } else {
+            return CGSize(
+                width: collectionViewSize.width,
+                height: CGFloat(numberOfItems) * (itemSize.height + itemSpacing) - itemSpacing + contentInset.top + contentInset.bottom
             )
         }
     }
