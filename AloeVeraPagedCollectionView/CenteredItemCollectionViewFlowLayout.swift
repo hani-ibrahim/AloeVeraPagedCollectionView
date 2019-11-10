@@ -12,8 +12,8 @@ import UIKit
 /// ⚠️ You must call `collectionViewSizeWillChange()` before the rotation start ... call it from `UIViewController.viewWillTransition` function
 open class CenteredItemCollectionViewFlowLayout: UICollectionViewFlowLayout, CenteredItemLocating {
     
-    public weak var delegate: CenteredItemLocatingDelegate?
-    public private(set) var lastLocatedCenteredItemIndexPath: IndexPath? = nil
+    open weak var centeredItemLocatingDelegate: CenteredItemLocatingDelegate?
+    open private(set) var lastLocatedCenteredItemIndexPath: IndexPath? = nil
     
     open override func prepare(forAnimatedBoundsChange oldBounds: CGRect) {
         super.prepare(forAnimatedBoundsChange: oldBounds)

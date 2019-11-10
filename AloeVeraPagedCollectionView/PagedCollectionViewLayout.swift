@@ -8,23 +8,54 @@
 
 import UIKit
 
-open class PagedCollectionViewLayout: UICollectionViewLayout {
+/// Arrange the items to be displayed in full collection view size and adjust it during rotation
+open class PagedCollectionViewLayout: UICollectionViewLayout, CenteredItemLocating {
     
+    /// Spacing between pages outside that is only visible during scrolling
     open var pageSpacing: CGFloat = 0
+    
+    /// The insets for each individual page
     open var pageInset: UIEdgeInsets = .zero
-    open var contentInset: UIEdgeInsets = .zero
+    
+    /// Insets for collection view that is not visible ... helpful when the collection view size is bigger than the superview
+    /// Used to enable paging support with spacing between pages
+    open var collectionViewInset: UIEdgeInsets = .zero
+    
+    /// When set to `false` -> the items will fill the whole available space
     open var shouldRespectAdjustedContentInset = true
+    
+    /// The direction of scrolling `horizontal` or `vertical`
     open var scrollDirection: UICollectionView.ScrollDirection = .horizontal
+    
+    open weak var centeredItemLocatingDelegate: CenteredItemLocatingDelegate?
     
     private var properties: Properties = .empty
     private var cache: Cache = .empty
     
     open override func prepare() {
-        if let collectionView = collectionView {
-            properties = properties(for: collectionView, bounds: collectionView.bounds)
-            cache = cache(for: collectionView)
-        }
         super.prepare()
+        guard let collectionView = collectionView else {
+            return
+        }
+        
+        properties = properties(for: collectionView, bounds: collectionView.bounds)
+        cache = cache(for: collectionView, collectionViewSize: collectionView.bounds.size, with: properties)
+    }
+    
+    open override func prepare(forAnimatedBoundsChange oldBounds: CGRect) {
+        super.prepare(forAnimatedBoundsChange: oldBounds)
+        guard let collectionView = collectionView else {
+            return
+        }
+        
+        let oldProperties = properties(for: collectionView, bounds: oldBounds)
+        let oldCache = cache(for: collectionView, collectionViewSize: oldBounds.size, with: oldProperties)
+        let oldItems = oldCache.attributes.values.map { ItemLocation(indexPath: $0.indexPath, center: $0.center) }
+        let oldContentVisibleCenter = CGPoint(x: oldBounds.midX, y: oldBounds.midY)
+        
+        if let centeredItemIndexPath = locateCenteredItem(near: oldContentVisibleCenter, from: oldItems) {
+            scrollToItem(at: centeredItemIndexPath)
+        }
     }
     
     open override var collectionViewContentSize: CGSize {
@@ -41,6 +72,31 @@ open class PagedCollectionViewLayout: UICollectionViewLayout {
     
     open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         newBounds.size != cache.collectionViewSize
+    }
+    
+    /// Scroll the collection view to the given index
+    open func scrollToItem(at indexPath: IndexPath) {
+        guard let collectionView = collectionView else {
+            return
+        }
+        
+        if collectionView.bounds.size != cache.collectionViewSize {
+            prepare()
+        }
+        
+        guard let layoutAttributes = cache.attributes[indexPath] else {
+            return
+        }
+        
+        let viewableAreaCenter = CGPoint(x: collectionView.bounds.size.width / 2, y: collectionView.bounds.size.height / 2)
+        let offset = contentOffset(
+            forItemAtPosition: layoutAttributes.center,
+            toBeCenteredIn: collectionView.bounds.size,
+            near: viewableAreaCenter,
+            within: .zero,
+            contentSize: cache.contentSize
+        )
+        scrollToItem(in: collectionView, to: offset)
     }
 }
 
@@ -65,21 +121,25 @@ private extension PagedCollectionViewLayout {
 private extension PagedCollectionViewLayout {
     func properties(for collectionView: UICollectionView, bounds: CGRect) -> Properties {
         let adjustedContentInset = collectionView.adjustedContentInset(shouldRespect: shouldRespectAdjustedContentInset)
-        let finalContentInset = UIEdgeInsets(
-            top: adjustedContentInset.top + pageInset.top + contentInset.top,
-            left: adjustedContentInset.left + pageInset.left + contentInset.left,
-            bottom: adjustedContentInset.bottom + pageInset.bottom + contentInset.bottom,
-            right: adjustedContentInset.right + pageInset.right + contentInset.right
+        let contentInset = UIEdgeInsets(
+            top: adjustedContentInset.top + pageInset.top + collectionViewInset.top,
+            left: adjustedContentInset.left + pageInset.left + collectionViewInset.left,
+            bottom: adjustedContentInset.bottom + pageInset.bottom + collectionViewInset.bottom,
+            right: adjustedContentInset.right + pageInset.right + collectionViewInset.right
         )
         
-        let itemSize = bounds.inset(by: finalContentInset).size
-        let itemSpacingInPage = scrollDirection == .horizontal ? bounds.size.width - itemSize.width : bounds.size.height - itemSize.height
-        let itemSpacing = itemSpacingInPage + pageSpacing
+        let itemSize = bounds.inset(by: contentInset).size
+        let itemSpacing: CGFloat
+        if scrollDirection == .horizontal {
+            itemSpacing = bounds.size.width - itemSize.width + pageSpacing - collectionViewInset.right - collectionViewInset.left
+        } else {
+            itemSpacing = bounds.size.height - itemSize.height + pageSpacing - collectionViewInset.top - collectionViewInset.bottom
+        }
         
-        return Properties(itemSize: itemSize, itemSpacing: itemSpacing, contentInset: finalContentInset)
+        return Properties(itemSize: itemSize, itemSpacing: itemSpacing, contentInset: contentInset)
     }
     
-    func cache(for collectionView: UICollectionView) -> Cache {
+    func cache(for collectionView: UICollectionView, collectionViewSize: CGSize, with properties: Properties) -> Cache {
         guard let dataSource = collectionView.dataSource else {
             return .empty
         }
@@ -96,7 +156,6 @@ private extension PagedCollectionViewLayout {
             }
         }
         
-        let collectionViewSize = collectionView.bounds.size
         let contentSize = properties.contentSize(forCollectionViewSize: collectionViewSize, numberOfItems: attributes.count, scrollDirection: scrollDirection)
         return Cache(collectionViewSize: collectionViewSize, attributes: attributes, contentSize: contentSize)
     }
@@ -105,7 +164,7 @@ private extension PagedCollectionViewLayout {
 private extension UICollectionView {
     func adjustedContentInset(shouldRespect: Bool) -> UIEdgeInsets {
         if contentInset != .zero {
-            print("PagedCollectionViewLayout: Neglecting (UICollectionView.contentInset) value of (\(contentInset)), please use (PagedCollectionViewLayout.contentInset) instead.")
+            print("PagedCollectionViewLayout: Neglecting (UICollectionView.contentInset) of value equals to (\(contentInset)), please use (pageInset & pageSpacing & collectionViewInset) instead.")
             contentInset = .zero
         }
         
